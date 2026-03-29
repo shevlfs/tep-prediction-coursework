@@ -1,0 +1,19 @@
+services:
+  opcua-server:
+    build:
+      context: .
+      dockerfile: docker/server/Dockerfile
+    ports:
+      - "4840:4840"
+    restart: unless-stopped
+
+  opcua-inference-client:
+    build:
+      context: .
+      dockerfile: docker/client/Dockerfile
+    privileged: true
+    volumes:
+      - /usr/lib/librknnrt.so:/usr/lib/librknnrt.so
+      - /proc/device-tree/compatible:/proc/device-tree/compatible:ro
+    command: ["opc.tcp://192.168.88.243:4840"]
+    restart: unless-stopped
