@@ -10,7 +10,7 @@ RUN cd /tmp && \
     cmake -DUA_ENABLE_AMALGAMATION=ON -DCMAKE_BUILD_TYPE=Release .. && \
     make -j$(nproc)
 
-COPY server.c /tmp/build/server.c
+COPY opcua/server.c /tmp/build/server.c
 RUN cp /tmp/open62541/build/open62541.c /tmp/open62541/build/open62541.h /tmp/build/ && \
     cd /tmp/build && \
     gcc -O2 -o opcua_server server.c open62541.c -I. -lpthread
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends libc6 && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /tmp/build/opcua_server /usr/local/bin/opcua_server
-COPY small_tep/df.csv /data/df.csv
+COPY data/small_tep/df.csv /data/df.csv
 
 EXPOSE 4840
 

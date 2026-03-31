@@ -1,0 +1,67 @@
+{
+  "tepnet_fp16": {
+    "mean_ms": 231.44,
+    "std_ms": 55.81,
+    "p50_ms": 219.04,
+    "p95_ms": 344.42,
+    "p99_ms": 376.18,
+    "min_ms": 159.52,
+    "max_ms": 381.08,
+    "cycles": 50,
+    "avg_confidence": 0.6719,
+    "most_common_pred": 9,
+    "most_common_label": "Fault 9"
+  },
+  "tcn_fp16": {
+    "mean_ms": 169.59,
+    "std_ms": 12.52,
+    "p50_ms": 165.75,
+    "p95_ms": 192.81,
+    "p99_ms": 208.1,
+    "min_ms": 150.76,
+    "max_ms": 220.6,
+    "cycles": 50,
+    "avg_confidence": 0.7471,
+    "most_common_pred": 11,
+    "most_common_label": "Fault 11"
+  },
+  "lstm_fp16": {
+    "mean_ms": 171.08,
+    "std_ms": 18.42,
+    "p50_ms": 164.99,
+    "p95_ms": 205.23,
+    "p99_ms": 224.39,
+    "min_ms": 148.79,
+    "max_ms": 233.04,
+    "cycles": 50,
+    "avg_confidence": 0.7708,
+    "most_common_pred": 16,
+    "most_common_label": "Fault 16"
+  },
+  "transformer_fp16": {
+    "mean_ms": 274.2,
+    "std_ms": 25.15,
+    "p50_ms": 269.65,
+    "p95_ms": 320.87,
+    "p99_ms": 342.41,
+    "min_ms": 232.19,
+    "max_ms": 352.67,
+    "cycles": 50,
+    "avg_confidence": 0.7067,
+    "most_common_pred": 3,
+    "most_common_label": "Fault 3"
+  },
+  "patchtst_fp16": {
+    "mean_ms": 168.52,
+    "std_ms": 18.88,
+    "p50_ms": 159.72,
+    "p95_ms": 209.5,
+    "p99_ms": 231.74,
+    "min_ms": 153.93,
+    "max_ms": 241.59,
+    "cycles": 50,
+    "avg_confidence": 0.6773,
+    "most_common_pred": 11,
+    "most_common_label": "Fault 11"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "mobilenetv2_fp16": {
+    "model": "mobilenetv2",
+    "quantization": "fp16",
+    "npu": {
+      "mean_ms": 35.483,
+      "std_ms": 0.589,
+      "p50_ms": 35.761,
+      "p95_ms": 36.052,
+      "p99_ms": 37.304,
+      "min_ms": 34.793,
+      "max_ms": 41.055,
+      "throughput_fps": 28.18,
+      "iterations": 1000
+    }
+  },
+  "mobilenetv2_int8": {
+    "model": "mobilenetv2",
+    "quantization": "int8",
+    "npu": {
+      "mean_ms": 24.962,
+      "std_ms": 0.326,
+      "p50_ms": 25.02,
+      "p95_ms": 25.199,
+      "p99_ms": 26.163,
+      "min_ms": 24.336,
+      "max_ms": 28.892,
+      "throughput_fps": 40.06,
+      "iterations": 1000
+    }
+  },
+  "resnet18_fp16": {
+    "model": "resnet18",
+    "quantization": "fp16",
+    "npu": {
+      "mean_ms": 47.614,
+      "std_ms": 0.617,
+      "p50_ms": 47.434,
+      "p95_ms": 48.401,
+      "p99_ms": 49.365,
+      "min_ms": 47.165,
+      "max_ms": 55.434,
+      "throughput_fps": 21.0,
+      "iterations": 1000
+    }
+  },
+  "resnet18_int8": {
+    "model": "resnet18",
+    "quantization": "int8",
+    "npu": {
+      "mean_ms": 24.673,
+      "std_ms": 0.211,
+      "p50_ms": 24.635,
+      "p95_ms": 24.836,
+      "p99_ms": 25.871,
+      "min_ms": 24.485,
+      "max_ms": 26.058,
+      "throughput_fps": 40.53,
+      "iterations": 1000
+    }
+  }
+}

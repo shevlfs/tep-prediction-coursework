@@ -1,0 +1,272 @@
+{
+  "lstm_fp16": {
+    "model": "lstm",
+    "quantization": "fp16",
+    "path": "rknn/lstm/model_fp16.rknn",
+    "npu": {
+      "mean_ms": 12.787,
+      "std_ms": 5.353,
+      "p50_ms": 10.583,
+      "p95_ms": 25.299,
+      "p99_ms": 33.492,
+      "min_ms": 8.763,
+      "max_ms": 38.257,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 9.387,
+      "std_ms": 1.398,
+      "p50_ms": 9.121,
+      "p95_ms": 10.527,
+      "p99_ms": 14.982,
+      "min_ms": 8.033,
+      "max_ms": 35.684,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "lstm_int8": {
+    "model": "lstm",
+    "quantization": "int8",
+    "path": "rknn/lstm/model_int8.rknn",
+    "npu": {
+      "mean_ms": 8.625,
+      "std_ms": 0.322,
+      "p50_ms": 8.58,
+      "p95_ms": 9.095,
+      "p99_ms": 10.11,
+      "min_ms": 8.004,
+      "max_ms": 10.487,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 8.68,
+      "std_ms": 0.574,
+      "p50_ms": 8.55,
+      "p95_ms": 9.654,
+      "p99_ms": 10.512,
+      "min_ms": 8.028,
+      "max_ms": 19.045,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "patchtst_fp16": {
+    "model": "patchtst",
+    "quantization": "fp16",
+    "path": "rknn/patchtst/model_fp16.rknn",
+    "npu": {
+      "mean_ms": 2.877,
+      "std_ms": 0.424,
+      "p50_ms": 2.759,
+      "p95_ms": 3.733,
+      "p99_ms": 4.572,
+      "min_ms": 2.361,
+      "max_ms": 6.637,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 2.778,
+      "std_ms": 0.409,
+      "p50_ms": 2.663,
+      "p95_ms": 3.648,
+      "p99_ms": 4.353,
+      "min_ms": 2.298,
+      "max_ms": 6.537,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "patchtst_int8": {
+    "model": "patchtst",
+    "quantization": "int8",
+    "path": "rknn/patchtst/model_int8.rknn",
+    "npu": {
+      "mean_ms": 3.289,
+      "std_ms": 0.388,
+      "p50_ms": 3.172,
+      "p95_ms": 4.207,
+      "p99_ms": 4.728,
+      "min_ms": 2.786,
+      "max_ms": 6.451,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 3.592,
+      "std_ms": 1.02,
+      "p50_ms": 3.346,
+      "p95_ms": 4.985,
+      "p99_ms": 7.486,
+      "min_ms": 2.777,
+      "max_ms": 19.564,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "tcn_fp16": {
+    "model": "tcn",
+    "quantization": "fp16",
+    "path": "rknn/tcn/model_fp16.rknn",
+    "npu": {
+      "mean_ms": 2.725,
+      "std_ms": 0.749,
+      "p50_ms": 2.531,
+      "p95_ms": 4.398,
+      "p99_ms": 5.766,
+      "min_ms": 1.911,
+      "max_ms": 7.544,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 2.573,
+      "std_ms": 0.617,
+      "p50_ms": 2.396,
+      "p95_ms": 3.836,
+      "p99_ms": 5.2,
+      "min_ms": 1.719,
+      "max_ms": 7.179,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "tcn_int8": {
+    "model": "tcn",
+    "quantization": "int8",
+    "path": "rknn/tcn/model_int8.rknn",
+    "npu": {
+      "mean_ms": 2.297,
+      "std_ms": 0.873,
+      "p50_ms": 2.101,
+      "p95_ms": 4.156,
+      "p99_ms": 5.483,
+      "min_ms": 1.343,
+      "max_ms": 7.779,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 1.684,
+      "std_ms": 0.444,
+      "p50_ms": 1.503,
+      "p95_ms": 2.567,
+      "p99_ms": 3.626,
+      "min_ms": 1.341,
+      "max_ms": 5.114,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "tepnet_fp16": {
+    "model": "tepnet",
+    "quantization": "fp16",
+    "path": "rknn/tepnet/model_fp16.rknn",
+    "npu": {
+      "mean_ms": 1.919,
+      "std_ms": 0.439,
+      "p50_ms": 1.726,
+      "p95_ms": 2.879,
+      "p99_ms": 3.55,
+      "min_ms": 1.539,
+      "max_ms": 4.846,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 2.217,
+      "std_ms": 0.711,
+      "p50_ms": 2.071,
+      "p95_ms": 3.482,
+      "p99_ms": 5.293,
+      "min_ms": 1.55,
+      "max_ms": 7.861,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "tepnet_int8": {
+    "model": "tepnet",
+    "quantization": "int8",
+    "path": "rknn/tepnet/model_int8.rknn",
+    "npu": {
+      "mean_ms": 2.24,
+      "std_ms": 0.734,
+      "p50_ms": 2.115,
+      "p95_ms": 3.526,
+      "p99_ms": 5.225,
+      "min_ms": 1.332,
+      "max_ms": 6.403,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 1.511,
+      "std_ms": 0.23,
+      "p50_ms": 1.459,
+      "p95_ms": 1.729,
+      "p99_ms": 2.702,
+      "min_ms": 1.305,
+      "max_ms": 3.091,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "transformer_fp16": {
+    "model": "transformer",
+    "quantization": "fp16",
+    "path": "rknn/transformer/model_fp16.rknn",
+    "npu": {
+      "mean_ms": 3.372,
+      "std_ms": 0.253,
+      "p50_ms": 3.317,
+      "p95_ms": 3.768,
+      "p99_ms": 4.571,
+      "min_ms": 3.108,
+      "max_ms": 5.406,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 3.376,
+      "std_ms": 0.272,
+      "p50_ms": 3.299,
+      "p95_ms": 3.889,
+      "p99_ms": 4.54,
+      "min_ms": 3.108,
+      "max_ms": 5.543,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  },
+  "transformer_int8": {
+    "model": "transformer",
+    "quantization": "int8",
+    "path": "rknn/transformer/model_int8.rknn",
+    "npu": {
+      "mean_ms": 2.375,
+      "std_ms": 0.216,
+      "p50_ms": 2.332,
+      "p95_ms": 2.574,
+      "p99_ms": 3.54,
+      "min_ms": 2.149,
+      "max_ms": 4.009,
+      "iterations": 1000,
+      "warmup": 100
+    },
+    "cpu": {
+      "mean_ms": 9.421,
+      "std_ms": 222.452,
+      "p50_ms": 2.34,
+      "p95_ms": 2.545,
+      "p99_ms": 3.61,
+      "min_ms": 1.668,
+      "max_ms": 7040.452,
+      "iterations": 1000,
+      "warmup": 100
+    }
+  }
+}

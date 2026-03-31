@@ -1,0 +1,18 @@
+=== LLM Benchmark on RK3568 ARM ===
+Model: qwen2-0_5b-instruct-q4_0.gguf (Qwen2 0.5B Instruct, Q4_0 quantization)
+Date: 2026-03-31
+Platform: RK3568 (4x ARM Cortex-A55 @ 2.0GHz)
+Cores: 4
+RAM: 3.8Gi
+
+=== Test 1: Short prompt, 128 token generation ===
+Prompt: "Explain what a neural processing unit is and why it is useful for edge AI:"
+Prompt eval: 6.1 tokens/second
+Generation: 2.3 tokens/second
+
+=== Test 2: Long prompt, 64 token generation ===
+Prompt: "The Tennessee Eastman Process is a widely used benchmark..." (81 tokens)
+Prompt eval: 5.2 tokens/second
+Generation: 2.1 tokens/second
+
+=== Benchmark complete ===

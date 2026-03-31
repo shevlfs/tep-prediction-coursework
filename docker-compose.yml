@@ -1,3 +1,7 @@
+### RK3568 board (192.168.88.244)
+### Lightweight: OPC UA server + inference client + node-exporter only
+### Grafana + Prometheus run on x86 (see docker-compose.monitoring.yml)
+
 services:
   opcua-server:
     build:
@@ -15,5 +19,32 @@ services:
     volumes:
       - /usr/lib/librknnrt.so:/usr/lib/librknnrt.so
       - /proc/device-tree/compatible:/proc/device-tree/compatible:ro
-    command: ["opc.tcp://192.168.88.243:4840"]
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL=${MODEL:-patchtst}
+      - QUANTIZATION=${QUANTIZATION:-fp16}
+    command: ["opc.tcp://opcua-server:4840", "--model", "${MODEL:-patchtst}", "--quantization", "${QUANTIZATION:-fp16}"]
+    restart: unless-stopped
+    depends_on:
+      - opcua-server
+    healthcheck:
+      test: ["CMD-SHELL", "python3 -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:8000/metrics\")' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  node-exporter:
+    image: prom/node-exporter:v1.7.0
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/rootfs"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
     restart: unless-stopped
