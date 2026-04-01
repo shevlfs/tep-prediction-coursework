@@ -23,10 +23,10 @@ coursework/
 
 ## Hardware
 
-Two machines on the same LAN:
+Four machines:
 
-- x86 server (192.168.88.243) with RTX 5070 Ti -- training, conversion
-- RK3568 board (192.168.88.244), 4x Cortex-A55, 0.8 TOPS NPU, 4GB RAM -- inference
+- 2 x86 servers with RTX 5070 Ti -- training, conversion
+- 2 RK3568 boards, 4x Cortex-A55, 0.8 TOPS NPU, 4GB RAM -- inference
 
 ## How to run
 
