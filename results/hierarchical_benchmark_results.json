@@ -1,0 +1,1498 @@
+{
+  "cloud_only": {
+    "accuracy": 0.792,
+    "macro_f1": 0.8709,
+    "per_class": {
+      "Normal": {
+        "precision": 0.878,
+        "recall": 0.3462,
+        "f1": 0.4966,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.7407,
+        "recall": 1.0,
+        "f1": 0.8511,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 1.0,
+        "recall": 0.9048,
+        "f1": 0.95,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2615,
+        "recall": 0.8095,
+        "f1": 0.3953,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.9474,
+        "recall": 1.0,
+        "f1": 0.973,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 1.0,
+        "recall": 0.7059,
+        "f1": 0.8276,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.8125,
+        "recall": 1.0,
+        "f1": 0.8966,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.1795,
+        "recall": 0.2917,
+        "f1": 0.2222,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9474,
+        "recall": 0.8182,
+        "f1": 0.878,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.875,
+        "recall": 0.9032,
+        "f1": 0.8889,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8696,
+        "recall": 1.0,
+        "f1": 0.9302,
+        "support": 20
+      }
+    },
+    "latency": {
+      "mean_ms": 5.808,
+      "p50_ms": 5.495,
+      "p95_ms": 6.949
+    }
+  },
+  "tepnet_t0.5": {
+    "accuracy": 0.752,
+    "macro_f1": 0.8251,
+    "per_class": {
+      "Normal": {
+        "precision": 0.8919,
+        "recall": 0.3173,
+        "f1": 0.4681,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.7037,
+        "recall": 0.95,
+        "f1": 0.8085,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 0.9545,
+        "recall": 1.0,
+        "f1": 0.9767,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2319,
+        "recall": 0.7619,
+        "f1": 0.3556,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.8947,
+        "recall": 0.9444,
+        "f1": 0.9189,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9167,
+        "recall": 0.6471,
+        "f1": 0.7586,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.5,
+        "recall": 0.9231,
+        "f1": 0.6486,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.2,
+        "recall": 0.2917,
+        "f1": 0.2373,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9,
+        "recall": 0.8182,
+        "f1": 0.8571,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.8333,
+        "recall": 0.6452,
+        "f1": 0.7273,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.7692,
+        "recall": 1.0,
+        "f1": 0.8696,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.268,
+    "escalation_count": 134,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 4.719,
+      "p50_ms": 3.152,
+      "p95_ms": 9.323,
+      "p99_ms": 10.076
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.194,
+      "p50_ms": 3.096
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.691,
+      "p50_ms": 5.485,
+      "p95_ms": 6.509,
+      "count": 134
+    }
+  },
+  "tepnet_t0.6": {
+    "accuracy": 0.76,
+    "macro_f1": 0.8302,
+    "per_class": {
+      "Normal": {
+        "precision": 0.878,
+        "recall": 0.3462,
+        "f1": 0.4966,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.7037,
+        "recall": 0.95,
+        "f1": 0.8085,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 0.9545,
+        "recall": 1.0,
+        "f1": 0.9767,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2656,
+        "recall": 0.8095,
+        "f1": 0.4,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.9444,
+        "recall": 0.9444,
+        "f1": 0.9444,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9167,
+        "recall": 0.6471,
+        "f1": 0.7586,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.5,
+        "recall": 0.9231,
+        "f1": 0.6486,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.1842,
+        "recall": 0.2917,
+        "f1": 0.2258,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9,
+        "recall": 0.8182,
+        "f1": 0.8571,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.8333,
+        "recall": 0.6452,
+        "f1": 0.7273,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8889,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.312,
+    "escalation_count": 156,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 5.089,
+      "p50_ms": 3.318,
+      "p95_ms": 9.715,
+      "p99_ms": 10.755
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.278,
+      "p50_ms": 3.134
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.803,
+      "p50_ms": 5.585,
+      "p95_ms": 6.713,
+      "count": 156
+    }
+  },
+  "tepnet_t0.7": {
+    "accuracy": 0.762,
+    "macro_f1": 0.8325,
+    "per_class": {
+      "Normal": {
+        "precision": 0.878,
+        "recall": 0.3462,
+        "f1": 0.4966,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.7037,
+        "recall": 0.95,
+        "f1": 0.8085,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 0.9545,
+        "recall": 1.0,
+        "f1": 0.9767,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2656,
+        "recall": 0.8095,
+        "f1": 0.4,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.9474,
+        "recall": 1.0,
+        "f1": 0.973,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9167,
+        "recall": 0.6471,
+        "f1": 0.7586,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.5,
+        "recall": 0.9231,
+        "f1": 0.6486,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.1842,
+        "recall": 0.2917,
+        "f1": 0.2258,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9474,
+        "recall": 0.8182,
+        "f1": 0.878,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.8333,
+        "recall": 0.6452,
+        "f1": 0.7273,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8889,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.328,
+    "escalation_count": 164,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 5.244,
+      "p50_ms": 3.271,
+      "p95_ms": 9.616,
+      "p99_ms": 12.61
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.293,
+      "p50_ms": 3.134
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.95,
+      "p50_ms": 5.554,
+      "p95_ms": 6.953,
+      "count": 164
+    }
+  },
+  "tepnet_t0.8": {
+    "accuracy": 0.764,
+    "macro_f1": 0.8351,
+    "per_class": {
+      "Normal": {
+        "precision": 0.878,
+        "recall": 0.3462,
+        "f1": 0.4966,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.7308,
+        "recall": 0.95,
+        "f1": 0.8261,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 0.9545,
+        "recall": 1.0,
+        "f1": 0.9767,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2656,
+        "recall": 0.8095,
+        "f1": 0.4,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.9474,
+        "recall": 1.0,
+        "f1": 0.973,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9167,
+        "recall": 0.6471,
+        "f1": 0.7586,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.5217,
+        "recall": 0.9231,
+        "f1": 0.6667,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.1795,
+        "recall": 0.2917,
+        "f1": 0.2222,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9474,
+        "recall": 0.8182,
+        "f1": 0.878,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.84,
+        "recall": 0.6774,
+        "f1": 0.75,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8889,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.344,
+    "escalation_count": 172,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 5.363,
+      "p50_ms": 3.459,
+      "p95_ms": 10.533,
+      "p99_ms": 12.693
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.301,
+      "p50_ms": 3.151
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.995,
+      "p50_ms": 5.612,
+      "p95_ms": 7.792,
+      "count": 172
+    }
+  },
+  "tepnet_t0.9": {
+    "accuracy": 0.768,
+    "macro_f1": 0.84,
+    "per_class": {
+      "Normal": {
+        "precision": 0.878,
+        "recall": 0.3462,
+        "f1": 0.4966,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.7407,
+        "recall": 1.0,
+        "f1": 0.8511,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 0.9545,
+        "recall": 1.0,
+        "f1": 0.9767,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 1.0,
+        "recall": 0.8571,
+        "f1": 0.9231,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2615,
+        "recall": 0.8095,
+        "f1": 0.3953,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.9474,
+        "recall": 1.0,
+        "f1": 0.973,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9167,
+        "recall": 0.6471,
+        "f1": 0.7586,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.5455,
+        "recall": 0.9231,
+        "f1": 0.6857,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.1795,
+        "recall": 0.2917,
+        "f1": 0.2222,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9474,
+        "recall": 0.8182,
+        "f1": 0.878,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.8462,
+        "recall": 0.7097,
+        "f1": 0.7719,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8696,
+        "recall": 1.0,
+        "f1": 0.9302,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.362,
+    "escalation_count": 181,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 5.399,
+      "p50_ms": 3.223,
+      "p95_ms": 9.661,
+      "p99_ms": 13.415
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.239,
+      "p50_ms": 3.107
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.966,
+      "p50_ms": 5.511,
+      "p95_ms": 8.577,
+      "count": 181
+    }
+  },
+  "tcn_t0.5": {
+    "accuracy": 0.762,
+    "macro_f1": 0.8225,
+    "per_class": {
+      "Normal": {
+        "precision": 0.8542,
+        "recall": 0.3942,
+        "f1": 0.5395,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.4706,
+        "recall": 0.8,
+        "f1": 0.5926,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 0.8571,
+        "recall": 0.8571,
+        "f1": 0.8571,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.25,
+        "recall": 0.7619,
+        "f1": 0.3765,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.85,
+        "recall": 0.9444,
+        "f1": 0.8947,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.8571,
+        "recall": 0.7059,
+        "f1": 0.7742,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.9231,
+        "recall": 0.9231,
+        "f1": 0.9231,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.0952,
+        "recall": 0.0833,
+        "f1": 0.0889,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.8,
+        "recall": 0.7273,
+        "f1": 0.7619,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.875,
+        "recall": 0.9032,
+        "f1": 0.8889,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1": 0.9677,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.7407,
+        "recall": 1.0,
+        "f1": 0.8511,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.11,
+    "escalation_count": 55,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 4.078,
+      "p50_ms": 3.132,
+      "p95_ms": 9.223,
+      "p99_ms": 10.215
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.427,
+      "p50_ms": 3.122
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.913,
+      "p50_ms": 5.638,
+      "p95_ms": 7.128,
+      "count": 55
+    }
+  },
+  "tcn_t0.6": {
+    "accuracy": 0.754,
+    "macro_f1": 0.8222,
+    "per_class": {
+      "Normal": {
+        "precision": 0.8444,
+        "recall": 0.3654,
+        "f1": 0.5101,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.4848,
+        "recall": 0.8,
+        "f1": 0.6038,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 0.8571,
+        "recall": 0.8571,
+        "f1": 0.8571,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2319,
+        "recall": 0.7619,
+        "f1": 0.3556,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.85,
+        "recall": 0.9444,
+        "f1": 0.8947,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.8571,
+        "recall": 0.7059,
+        "f1": 0.7742,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.9231,
+        "recall": 0.9231,
+        "f1": 0.9231,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.0417,
+        "recall": 0.0417,
+        "f1": 0.0417,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.8,
+        "recall": 0.7273,
+        "f1": 0.7619,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.875,
+        "recall": 0.9032,
+        "f1": 0.8889,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1": 0.9677,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8696,
+        "recall": 1.0,
+        "f1": 0.9302,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.178,
+    "escalation_count": 89,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 4.454,
+      "p50_ms": 3.264,
+      "p95_ms": 10.076,
+      "p99_ms": 11.352
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.364,
+      "p50_ms": 3.202
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 6.12,
+      "p50_ms": 5.847,
+      "p95_ms": 7.647,
+      "count": 89
+    }
+  },
+  "tcn_t0.7": {
+    "accuracy": 0.754,
+    "macro_f1": 0.8278,
+    "per_class": {
+      "Normal": {
+        "precision": 0.8718,
+        "recall": 0.3269,
+        "f1": 0.4755,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.5152,
+        "recall": 0.85,
+        "f1": 0.6415,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 0.8571,
+        "recall": 0.8571,
+        "f1": 0.8571,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2192,
+        "recall": 0.7619,
+        "f1": 0.3404,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.8571,
+        "recall": 1.0,
+        "f1": 0.9231,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9231,
+        "recall": 0.7059,
+        "f1": 0.8,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.9231,
+        "recall": 0.9231,
+        "f1": 0.9231,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.0769,
+        "recall": 0.0833,
+        "f1": 0.08,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.8889,
+        "recall": 0.7273,
+        "f1": 0.8,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.875,
+        "recall": 0.9032,
+        "f1": 0.8889,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1": 0.9677,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8333,
+        "recall": 1.0,
+        "f1": 0.9091,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.244,
+    "escalation_count": 122,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 4.738,
+      "p50_ms": 3.231,
+      "p95_ms": 9.475,
+      "p99_ms": 11.284
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.303,
+      "p50_ms": 3.178
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.882,
+      "p50_ms": 5.63,
+      "p95_ms": 7.044,
+      "count": 122
+    }
+  },
+  "tcn_t0.8": {
+    "accuracy": 0.752,
+    "macro_f1": 0.8308,
+    "per_class": {
+      "Normal": {
+        "precision": 0.8611,
+        "recall": 0.2981,
+        "f1": 0.4429,
+        "support": 104
+      },
+      "Fault 1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 16
+      },
+      "Fault 2": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 24
+      },
+      "Fault 3": {
+        "precision": 0.5152,
+        "recall": 0.85,
+        "f1": 0.6415,
+        "support": 20
+      },
+      "Fault 4": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 18
+      },
+      "Fault 5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 21
+      },
+      "Fault 6": {
+        "precision": 1.0,
+        "recall": 0.7857,
+        "f1": 0.88,
+        "support": 14
+      },
+      "Fault 7": {
+        "precision": 0.85,
+        "recall": 1.0,
+        "f1": 0.9189,
+        "support": 17
+      },
+      "Fault 8": {
+        "precision": 0.8571,
+        "recall": 0.8571,
+        "f1": 0.8571,
+        "support": 21
+      },
+      "Fault 9": {
+        "precision": 0.2361,
+        "recall": 0.8095,
+        "f1": 0.3656,
+        "support": 21
+      },
+      "Fault 10": {
+        "precision": 0.8571,
+        "recall": 1.0,
+        "f1": 0.9231,
+        "support": 18
+      },
+      "Fault 11": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 17
+      },
+      "Fault 12": {
+        "precision": 0.9231,
+        "recall": 0.7059,
+        "f1": 0.8,
+        "support": 17
+      },
+      "Fault 13": {
+        "precision": 0.9231,
+        "recall": 0.9231,
+        "f1": 0.9231,
+        "support": 13
+      },
+      "Fault 14": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 22
+      },
+      "Fault 15": {
+        "precision": 0.1212,
+        "recall": 0.1667,
+        "f1": 0.1404,
+        "support": 24
+      },
+      "Fault 16": {
+        "precision": 0.9375,
+        "recall": 0.6818,
+        "f1": 0.7895,
+        "support": 22
+      },
+      "Fault 17": {
+        "precision": 1.0,
+        "recall": 0.9583,
+        "f1": 0.9787,
+        "support": 24
+      },
+      "Fault 18": {
+        "precision": 0.875,
+        "recall": 0.9032,
+        "f1": 0.8889,
+        "support": 31
+      },
+      "Fault 19": {
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1": 0.9677,
+        "support": 16
+      },
+      "Fault 20": {
+        "precision": 0.8696,
+        "recall": 1.0,
+        "f1": 0.9302,
+        "support": 20
+      }
+    },
+    "escalation_rate": 0.27,
+    "escalation_count": 135,
+    "total_samples": 500,
+    "latency_total": {
+      "mean_ms": 4.857,
+      "p50_ms": 3.195,
+      "p95_ms": 9.587,
+      "p99_ms": 11.703
+    },
+    "latency_edge_only": {
+      "mean_ms": 3.281,
+      "p50_ms": 3.149
+    },
+    "latency_cloud_calls": {
+      "mean_ms": 5.835,
+      "p50_ms": 5.545,
+      "p95_ms": 7.144,
+      "count": 135
+    }
+  }
+}

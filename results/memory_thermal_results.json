@@ -1,0 +1,4390 @@
+{
+  "lstm_fp16": {
+    "model": "lstm",
+    "quantization": "fp16",
+    "path": "rknn/lstm/model_fp16.rknn",
+    "file_size_mb": 0.91,
+    "memory": {
+      "rss_before_mb": 32.1,
+      "rss_after_load_mb": 33.0,
+      "rss_after_init_mb": 37.6,
+      "rss_after_warmup_mb": 44.2,
+      "rss_peak_mb": 44.4,
+      "rss_after_release_mb": 44.4,
+      "model_memory_mb": 5.5,
+      "runtime_overhead_mb": 6.8
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 43.8,
+        "gpu-thermal": 39.4
+      },
+      "after_warmup": {
+        "cpu-thermal": 43.1,
+        "gpu-thermal": 38.9
+      },
+      "after_sustained": {
+        "cpu-thermal": 43.1,
+        "gpu-thermal": 38.9
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 41.9,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 7.1,
+          "temperatures": {
+            "cpu-thermal": 41.9,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 8.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 9.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 10.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.2
+        },
+        {
+          "elapsed_sec": 11.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 12.1,
+          "temperatures": {
+            "cpu-thermal": 41.9,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 13.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 14.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 15.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 16.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 17.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 18.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 19.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 20.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 21.1,
+          "temperatures": {
+            "cpu-thermal": 42.5,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 22.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 23.2,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 24.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 25.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.3
+        },
+        {
+          "elapsed_sec": 26.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.4
+        },
+        {
+          "elapsed_sec": 27.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 44.4
+        },
+        {
+          "elapsed_sec": 28.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 44.4
+        },
+        {
+          "elapsed_sec": 29.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 44.4
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 2256,
+      "throughput_fps": 75.2,
+      "mean_ms": 13.087,
+      "std_ms": 3.146,
+      "p50_ms": 11.103,
+      "p95_ms": 17.696,
+      "p99_ms": 20.927,
+      "min_ms": 10.173,
+      "max_ms": 28.541
+    }
+  },
+  "lstm_int8": {
+    "model": "lstm",
+    "quantization": "int8",
+    "path": "rknn/lstm/model_int8.rknn",
+    "file_size_mb": 0.79,
+    "memory": {
+      "rss_before_mb": 44.4,
+      "rss_after_load_mb": 45.2,
+      "rss_after_init_mb": 45.3,
+      "rss_after_warmup_mb": 45.6,
+      "rss_peak_mb": 45.8,
+      "rss_after_release_mb": 45.8,
+      "model_memory_mb": 0.9,
+      "runtime_overhead_mb": 0.4
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 43.1,
+        "gpu-thermal": 39.4
+      },
+      "after_warmup": {
+        "cpu-thermal": 43.1,
+        "gpu-thermal": 39.4
+      },
+      "after_sustained": {
+        "cpu-thermal": 43.1,
+        "gpu-thermal": 39.4
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.6
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.6
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 7.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 8.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 9.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 10.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 11.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 12.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 13.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 14.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 15.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 16.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 17.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 18.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 19.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 20.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 21.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 22.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 23.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 24.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 25.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 26.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 27.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 28.2,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.7
+        },
+        {
+          "elapsed_sec": 29.2,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.7
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 2628,
+      "throughput_fps": 87.6,
+      "mean_ms": 11.228,
+      "std_ms": 2.179,
+      "p50_ms": 10.663,
+      "p95_ms": 14.256,
+      "p99_ms": 19.574,
+      "min_ms": 10.225,
+      "max_ms": 57.314
+    }
+  },
+  "patchtst_fp16": {
+    "model": "patchtst",
+    "quantization": "fp16",
+    "path": "rknn/patchtst/model_fp16.rknn",
+    "file_size_mb": 0.4,
+    "memory": {
+      "rss_before_mb": 45.8,
+      "rss_after_load_mb": 45.8,
+      "rss_after_init_mb": 45.8,
+      "rss_after_warmup_mb": 45.9,
+      "rss_peak_mb": 46.0,
+      "rss_after_release_mb": 46.0,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.2
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 43.1,
+        "gpu-thermal": 39.4
+      },
+      "after_warmup": {
+        "cpu-thermal": 43.8,
+        "gpu-thermal": 38.9
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 39.4
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 17.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 18.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 19.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 20.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 21.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 22.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 23.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 24.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 25.1,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 26.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 45.9
+        },
+        {
+          "elapsed_sec": 27.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 28.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 29.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 5913,
+      "throughput_fps": 197.1,
+      "mean_ms": 4.971,
+      "std_ms": 0.769,
+      "p50_ms": 4.814,
+      "p95_ms": 5.958,
+      "p99_ms": 8.302,
+      "min_ms": 4.112,
+      "max_ms": 19.442
+    }
+  },
+  "patchtst_int8": {
+    "model": "patchtst",
+    "quantization": "int8",
+    "path": "rknn/patchtst/model_int8.rknn",
+    "file_size_mb": 0.26,
+    "memory": {
+      "rss_before_mb": 46.0,
+      "rss_after_load_mb": 46.0,
+      "rss_after_init_mb": 46.0,
+      "rss_after_warmup_mb": 46.0,
+      "rss_peak_mb": 46.0,
+      "rss_after_release_mb": 46.0,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.0
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 39.4
+      },
+      "after_warmup": {
+        "cpu-thermal": 43.8,
+        "gpu-thermal": 39.4
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 43.1,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 17.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 18.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 19.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 20.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 21.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 22.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 23.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 24.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 25.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 26.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 27.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 28.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 29.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 4522,
+      "throughput_fps": 150.7,
+      "mean_ms": 6.523,
+      "std_ms": 1.03,
+      "p50_ms": 6.304,
+      "p95_ms": 7.585,
+      "p99_ms": 11.359,
+      "min_ms": 5.415,
+      "max_ms": 27.39
+    }
+  },
+  "tcn_fp16": {
+    "model": "tcn",
+    "quantization": "fp16",
+    "path": "rknn/tcn/model_fp16.rknn",
+    "file_size_mb": 0.23,
+    "memory": {
+      "rss_before_mb": 46.0,
+      "rss_after_load_mb": 46.0,
+      "rss_after_init_mb": 46.0,
+      "rss_after_warmup_mb": 46.0,
+      "rss_peak_mb": 46.2,
+      "rss_after_release_mb": 46.2,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.1
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 39.4
+      },
+      "after_warmup": {
+        "cpu-thermal": 43.8,
+        "gpu-thermal": 40.0
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 17.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.0
+        },
+        {
+          "elapsed_sec": 18.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 19.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 20.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 21.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 22.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 23.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 24.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 25.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 26.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 27.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 28.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.1
+        },
+        {
+          "elapsed_sec": 29.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 8683,
+      "throughput_fps": 289.4,
+      "mean_ms": 3.39,
+      "std_ms": 0.64,
+      "p50_ms": 3.266,
+      "p95_ms": 4.25,
+      "p99_ms": 5.796,
+      "min_ms": 2.76,
+      "max_ms": 27.84
+    }
+  },
+  "tcn_int8": {
+    "model": "tcn",
+    "quantization": "int8",
+    "path": "rknn/tcn/model_int8.rknn",
+    "file_size_mb": 0.14,
+    "memory": {
+      "rss_before_mb": 46.2,
+      "rss_after_load_mb": 46.2,
+      "rss_after_init_mb": 46.2,
+      "rss_after_warmup_mb": 46.2,
+      "rss_peak_mb": 46.3,
+      "rss_after_release_mb": 46.3,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.1
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 39.4
+      },
+      "after_warmup": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 39.4
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1416.0,
+            "cpu2_mhz": 1416.0,
+            "cpu3_mhz": 1416.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1416.0,
+            "cpu1_mhz": 1416.0,
+            "cpu2_mhz": 1416.0,
+            "cpu3_mhz": 1416.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 17.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 18.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 19.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 20.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 21.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 22.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 23.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 24.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 25.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 26.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 27.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 28.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        },
+        {
+          "elapsed_sec": 29.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.2
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 9441,
+      "throughput_fps": 314.7,
+      "mean_ms": 3.115,
+      "std_ms": 0.572,
+      "p50_ms": 2.998,
+      "p95_ms": 4.019,
+      "p99_ms": 5.516,
+      "min_ms": 2.523,
+      "max_ms": 13.739
+    }
+  },
+  "tepnet_fp16": {
+    "model": "tepnet",
+    "quantization": "fp16",
+    "path": "rknn/tepnet/model_fp16.rknn",
+    "file_size_mb": 0.06,
+    "memory": {
+      "rss_before_mb": 46.3,
+      "rss_after_load_mb": 46.3,
+      "rss_after_init_mb": 46.3,
+      "rss_after_warmup_mb": 46.3,
+      "rss_peak_mb": 46.3,
+      "rss_after_release_mb": 46.3,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.0
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "after_warmup": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 39.4
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 17.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 18.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 19.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 20.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 21.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 22.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 23.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 24.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 25.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 26.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 27.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 28.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 29.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 8613,
+      "throughput_fps": 287.1,
+      "mean_ms": 3.416,
+      "std_ms": 0.829,
+      "p50_ms": 3.208,
+      "p95_ms": 4.609,
+      "p99_ms": 7.508,
+      "min_ms": 2.707,
+      "max_ms": 15.376
+    }
+  },
+  "tepnet_int8": {
+    "model": "tepnet",
+    "quantization": "int8",
+    "path": "rknn/tepnet/model_int8.rknn",
+    "file_size_mb": 0.04,
+    "memory": {
+      "rss_before_mb": 46.3,
+      "rss_after_load_mb": 46.3,
+      "rss_after_init_mb": 46.3,
+      "rss_after_warmup_mb": 46.3,
+      "rss_peak_mb": 46.3,
+      "rss_after_release_mb": 46.3,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.0
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "after_warmup": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 17.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 18.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 19.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 20.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 21.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 22.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 23.1,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 24.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 25.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 26.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 27.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 28.1,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.3
+        },
+        {
+          "elapsed_sec": 29.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.3
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 8189,
+      "throughput_fps": 273.0,
+      "mean_ms": 3.592,
+      "std_ms": 1.508,
+      "p50_ms": 2.984,
+      "p95_ms": 7.608,
+      "p99_ms": 8.769,
+      "min_ms": 2.526,
+      "max_ms": 18.793
+    }
+  },
+  "transformer_fp16": {
+    "model": "transformer",
+    "quantization": "fp16",
+    "path": "rknn/transformer/model_fp16.rknn",
+    "file_size_mb": 0.36,
+    "memory": {
+      "rss_before_mb": 46.3,
+      "rss_after_load_mb": 46.3,
+      "rss_after_init_mb": 46.4,
+      "rss_after_warmup_mb": 46.4,
+      "rss_peak_mb": 46.4,
+      "rss_after_release_mb": 46.4,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.0
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 43.8,
+        "gpu-thermal": 40.0
+      },
+      "after_warmup": {
+        "cpu-thermal": 43.8,
+        "gpu-thermal": 40.0
+      },
+      "after_sustained": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.6
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 3.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 4.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 5.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 6.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 7.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 8.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 9.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 10.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 11.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 12.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 13.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 14.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 15.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 16.0,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 17.1,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 18.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 19.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 20.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 21.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 22.1,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 23.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 24.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 25.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 26.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 27.1,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 28.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 29.1,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 4400,
+      "throughput_fps": 146.7,
+      "mean_ms": 6.706,
+      "std_ms": 1.997,
+      "p50_ms": 5.712,
+      "p95_ms": 11.254,
+      "p99_ms": 12.437,
+      "min_ms": 4.829,
+      "max_ms": 26.925
+    }
+  },
+  "transformer_int8": {
+    "model": "transformer",
+    "quantization": "int8",
+    "path": "rknn/transformer/model_int8.rknn",
+    "file_size_mb": 0.26,
+    "memory": {
+      "rss_before_mb": 46.4,
+      "rss_after_load_mb": 46.4,
+      "rss_after_init_mb": 46.4,
+      "rss_after_warmup_mb": 46.4,
+      "rss_peak_mb": 46.4,
+      "rss_after_release_mb": 46.4,
+      "model_memory_mb": 0.0,
+      "runtime_overhead_mb": 0.0
+    },
+    "thermal": {
+      "before": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "after_warmup": {
+        "cpu-thermal": 44.4,
+        "gpu-thermal": 40.0
+      },
+      "after_sustained": {
+        "cpu-thermal": 41.9,
+        "gpu-thermal": 38.9
+      },
+      "log": [
+        {
+          "elapsed_sec": 1.0,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 2.0,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 9.9,
+          "temperatures": {
+            "cpu-thermal": 41.9,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 10.9,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 11.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 12.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 13.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 14.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 39.4
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 15.9,
+          "temperatures": {
+            "cpu-thermal": 43.8,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 16.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 17.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 18.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 19.9,
+          "temperatures": {
+            "cpu-thermal": 45.0,
+            "gpu-thermal": 40.6
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1992.0,
+            "cpu1_mhz": 1992.0,
+            "cpu2_mhz": 1992.0,
+            "cpu3_mhz": 1992.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 20.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 21.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 22.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 23.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 24.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 25.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 26.9,
+          "temperatures": {
+            "cpu-thermal": 44.4,
+            "gpu-thermal": 40.0
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1800.0,
+            "cpu1_mhz": 1800.0,
+            "cpu2_mhz": 1800.0,
+            "cpu3_mhz": 1800.0
+          },
+          "rss_mb": 46.4
+        },
+        {
+          "elapsed_sec": 34.4,
+          "temperatures": {
+            "cpu-thermal": 41.2,
+            "gpu-thermal": 38.9
+          },
+          "cpu_freqs": {
+            "cpu0_mhz": 1608.0,
+            "cpu1_mhz": 1608.0,
+            "cpu2_mhz": 1608.0,
+            "cpu3_mhz": 1608.0
+          },
+          "rss_mb": 46.4
+        }
+      ]
+    },
+    "sustained_inference": {
+      "duration_sec": 30,
+      "total_iterations": 4274,
+      "throughput_fps": 142.5,
+      "mean_ms": 7.967,
+      "std_ms": 152.395,
+      "p50_ms": 4.496,
+      "p95_ms": 5.771,
+      "p99_ms": 8.881,
+      "min_ms": 3.609,
+      "max_ms": 7129.243
+    }
+  }
+}

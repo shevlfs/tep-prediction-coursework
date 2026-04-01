@@ -1,0 +1,160 @@
+[
+  {
+    "scenario": "stable_normal_operation",
+    "timestamp": "2026-04-01T16:23:45.279895",
+    "system_state": {
+      "current_model": "tepnet",
+      "current_quantization": "fp16",
+      "current_prediction": 0,
+      "current_confidence": 0.92,
+      "avg_confidence_5m": 0.89,
+      "inference_rate_per_sec": 5.2,
+      "latency_p95_ms": 2.1,
+      "cpu_usage_pct": 15.3,
+      "memory_available_pct": 82.1,
+      "prediction_distribution_5m": {
+        "Normal": 45,
+        "Fault 3": 2,
+        "Fault 9": 1
+      }
+    },
+    "llm_response": "{\n  \"analysis\": \"The current model (tepnet) is providing high confidence predictions with a stable distribution over the last 5 minutes. The inference rate and latency are also within acceptable limits.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify keeping the fast tepnet model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+    "decision": {
+      "analysis": "The current model (tepnet) is providing high confidence predictions with a stable distribution over the last 5 minutes. The inference rate and latency are also within acceptable limits.",
+      "recommendation": "keep_current",
+      "recommended_model": "",
+      "reason": "High confidence and stable predictions justify keeping the fast tepnet model.",
+      "confidence_in_decision": 0.9,
+      "alert_level": "normal"
+    },
+    "llm_latency_ms": 31871.3,
+    "llm_model": "qwen2.5:7b"
+  },
+  {
+    "scenario": "confidence_dropping",
+    "timestamp": "2026-04-01T16:24:17.151345",
+    "system_state": {
+      "current_model": "tepnet",
+      "current_quantization": "fp16",
+      "current_prediction": 9,
+      "current_confidence": 0.41,
+      "avg_confidence_5m": 0.53,
+      "inference_rate_per_sec": 5.1,
+      "latency_p95_ms": 2.3,
+      "cpu_usage_pct": 16.1,
+      "memory_available_pct": 81.5,
+      "prediction_distribution_5m": {
+        "Fault 9": 18,
+        "Normal": 12,
+        "Fault 3": 10,
+        "Fault 15": 8
+      }
+    },
+    "llm_response": "{\n  \"analysis\": \"Current model tepnet is fast but has low confidence for Fault 9 predictions.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Low prediction confidence requires a more accurate model.\",\n  \"confidence_in_decision\": 0.85,\n  \"alert_level\": \"warning\"\n}",
+    "decision": {
+      "analysis": "Current model tepnet is fast but has low confidence for Fault 9 predictions.",
+      "recommendation": "switch",
+      "recommended_model": "patchtst",
+      "reason": "Low prediction confidence requires a more accurate model.",
+      "confidence_in_decision": 0.85,
+      "alert_level": "warning"
+    },
+    "llm_latency_ms": 590.8,
+    "llm_model": "qwen2.5:7b"
+  },
+  {
+    "scenario": "oscillating_predictions",
+    "timestamp": "2026-04-01T16:24:17.742273",
+    "system_state": {
+      "current_model": "tcn",
+      "current_quantization": "fp16",
+      "current_prediction": 3,
+      "current_confidence": 0.55,
+      "avg_confidence_5m": 0.48,
+      "inference_rate_per_sec": 5.0,
+      "latency_p95_ms": 3.8,
+      "cpu_usage_pct": 18.2,
+      "memory_available_pct": 80.3,
+      "prediction_distribution_5m": {
+        "Fault 3": 12,
+        "Fault 9": 11,
+        "Fault 15": 10,
+        "Normal": 8,
+        "Fault 5": 7
+      }
+    },
+    "llm_response": "{\n  \"analysis\": \"Current confidence is below the threshold for stability, indicating potential issues with prediction accuracy. The average confidence over the last 5 minutes is also low, suggesting oscillation in predictions.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Confidence drops below critical level and predictions are unstable.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"warning\"\n}",
+    "decision": {
+      "analysis": "Current confidence is below the threshold for stability, indicating potential issues with prediction accuracy. The average confidence over the last 5 minutes is also low, suggesting oscillation in predictions.",
+      "recommendation": "switch",
+      "recommended_model": "patchtst",
+      "reason": "Confidence drops below critical level and predictions are unstable.",
+      "confidence_in_decision": 0.9,
+      "alert_level": "warning"
+    },
+    "llm_latency_ms": 727.5,
+    "llm_model": "qwen2.5:7b"
+  },
+  {
+    "scenario": "accurate_model_stable",
+    "timestamp": "2026-04-01T16:24:18.469859",
+    "system_state": {
+      "current_model": "patchtst",
+      "current_quantization": "fp16",
+      "current_prediction": 5,
+      "current_confidence": 0.94,
+      "avg_confidence_5m": 0.91,
+      "inference_rate_per_sec": 3.8,
+      "latency_p95_ms": 5.8,
+      "cpu_usage_pct": 22.1,
+      "memory_available_pct": 79.8,
+      "prediction_distribution_5m": {
+        "Fault 5": 42,
+        "Fault 4": 3,
+        "Normal": 3
+      }
+    },
+    "llm_response": "{\n  \"analysis\": \"The current model (patchtst) is providing high confidence predictions with a stable distribution over the last 5 minutes. The inference rate and latency are within acceptable ranges.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify keeping the accurate patchtst model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+    "decision": {
+      "analysis": "The current model (patchtst) is providing high confidence predictions with a stable distribution over the last 5 minutes. The inference rate and latency are within acceptable ranges.",
+      "recommendation": "keep_current",
+      "recommended_model": "",
+      "reason": "High confidence and stable predictions justify keeping the accurate patchtst model.",
+      "confidence_in_decision": 0.9,
+      "alert_level": "normal"
+    },
+    "llm_latency_ms": 721.5,
+    "llm_model": "qwen2.5:7b"
+  },
+  {
+    "scenario": "high_load_latency_pressure",
+    "timestamp": "2026-04-01T16:24:19.191402",
+    "system_state": {
+      "current_model": "patchtst",
+      "current_quantization": "fp16",
+      "current_prediction": 11,
+      "current_confidence": 0.87,
+      "avg_confidence_5m": 0.85,
+      "inference_rate_per_sec": 3.5,
+      "latency_p95_ms": 8.2,
+      "cpu_usage_pct": 78.5,
+      "memory_available_pct": 45.2,
+      "prediction_distribution_5m": {
+        "Fault 11": 38,
+        "Fault 12": 5,
+        "Normal": 2
+      }
+    },
+    "llm_response": "{\n  \"analysis\": \"Current model patchtst is providing high confidence predictions with stable inference rates and low latency.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify maintaining the current accurate model.\",\n  \"confidence_in_decision\": 0.95,\n  \"alert_level\": \"normal\"\n}",
+    "decision": {
+      "analysis": "Current model patchtst is providing high confidence predictions with stable inference rates and low latency.",
+      "recommendation": "keep_current",
+      "recommended_model": "",
+      "reason": "High confidence and stable predictions justify maintaining the current accurate model.",
+      "confidence_in_decision": 0.95,
+      "alert_level": "normal"
+    },
+    "llm_latency_ms": 606.7,
+    "llm_model": "qwen2.5:7b"
+  }
+]

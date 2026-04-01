@@ -1,0 +1,390 @@
+{
+  "model": "qwen2.5:7b",
+  "total_scenarios": 15,
+  "fully_correct": 12,
+  "action_correct": 13,
+  "accuracy_full": 0.8,
+  "accuracy_action": 0.8667,
+  "results": [
+    {
+      "scenario": "1_fast_model_high_confidence",
+      "ground_truth": "High confidence, stable predictions — fast model is fine",
+      "llm_response": "{\n  \"analysis\": \"Current model tepnet is providing high confidence predictions with a stable distribution.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify keeping the fast tepnet model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current model tepnet is providing high confidence predictions with a stable distribution.",
+        "recommendation": "keep_current",
+        "recommended_model": "",
+        "reason": "High confidence and stable predictions justify keeping the fast tepnet model.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "keep_current",
+        "llm_model": "",
+        "expected_action": "keep_current",
+        "expected_models": []
+      },
+      "latency_ms": 1767.2
+    },
+    {
+      "scenario": "2_fast_model_low_confidence",
+      "ground_truth": "Low confidence + oscillating predictions → need more accurate model",
+      "llm_response": "{\n  \"analysis\": \"Current confidence is below the threshold for stability, and predictions are not consistently high.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Confidence drops below 0.6 and predictions oscillate.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current confidence is below the threshold for stability, and predictions are not consistently high.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Confidence drops below 0.6 and predictions oscillate.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst",
+          "transformer"
+        ]
+      },
+      "latency_ms": 601.6
+    },
+    {
+      "scenario": "3_oscillating_4_classes",
+      "ground_truth": "Predictions scattered across 5 classes with low confidence → need best model",
+      "llm_response": "{\n  \"analysis\": \"Current prediction confidence is below the threshold of 0.6, and there are oscillations in predictions as indicated by the low average confidence over the last 5 minutes.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Prediction confidence is low and predictions are oscillating.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current prediction confidence is below the threshold of 0.6, and there are oscillations in predictions as indicated by the low average confidence over the last 5 minutes.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Prediction confidence is low and predictions are oscillating.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst"
+        ]
+      },
+      "latency_ms": 706.3
+    },
+    {
+      "scenario": "4_patchtst_stable_can_downgrade",
+      "ground_truth": "Very stable high confidence — could keep or downgrade to save latency, both OK",
+      "llm_response": "{\n  \"analysis\": \"Current model patchtst is providing high confidence predictions with a stable distribution.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify keeping the accurate model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current model patchtst is providing high confidence predictions with a stable distribution.",
+        "recommendation": "keep_current",
+        "recommended_model": "",
+        "reason": "High confidence and stable predictions justify keeping the accurate model.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "keep_current",
+        "llm_model": "",
+        "expected_action": "keep_current",
+        "expected_models": [
+          "tcn",
+          "tepnet"
+        ]
+      },
+      "latency_ms": 558.7
+    },
+    {
+      "scenario": "5_patchtst_confidence_dropping",
+      "ground_truth": "Already on most accurate model — switching would make it worse. This is a hard case.",
+      "llm_response": "{\n  \"analysis\": \"Current prediction is for Fault 11 with low confidence (0.51), and average confidence over 5 minutes is also below 0.6. Prediction distribution shows some oscillation between different faults.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"tcn\",\n  \"reason\": \"Low confidence and prediction oscillation suggest switching to a more balanced model.\",\n  \"confidence_in_decision\": 0.85,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current prediction is for Fault 11 with low confidence (0.51), and average confidence over 5 minutes is also below 0.6. Prediction distribution shows some oscillation between different faults.",
+        "recommendation": "switch",
+        "recommended_model": "tcn",
+        "reason": "Low confidence and prediction oscillation suggest switching to a more balanced model.",
+        "confidence_in_decision": 0.85,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": false,
+        "model_correct": true,
+        "fully_correct": false,
+        "llm_action": "switch",
+        "llm_model": "tcn",
+        "expected_action": "keep_current",
+        "expected_models": []
+      },
+      "latency_ms": 781.0
+    },
+    {
+      "scenario": "6_lstm_should_always_switch",
+      "ground_truth": "LSTM is slow and inaccurate — any other model is better",
+      "llm_response": "{\n  \"analysis\": \"Current model (lstm) has low confidence and prediction distribution shows frequent oscillations between classes.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Low confidence and prediction instability suggest switching to a more accurate model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current model (lstm) has low confidence and prediction distribution shows frequent oscillations between classes.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Low confidence and prediction instability suggest switching to a more accurate model.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst",
+          "transformer",
+          "tcn",
+          "tepnet"
+        ]
+      },
+      "latency_ms": 618.9
+    },
+    {
+      "scenario": "7_tepnet_moderate_confidence",
+      "ground_truth": "Moderate-high confidence, mostly stable — tepnet OK, tcn would be marginal upgrade",
+      "llm_response": "{\n  \"analysis\": \"Current confidence is below the threshold of 0.8 but above 0.6, and predictions are relatively stable with a slight oscillation.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Confidence drops below 0.8 and there's a minor prediction oscillation.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current confidence is below the threshold of 0.8 but above 0.6, and predictions are relatively stable with a slight oscillation.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Confidence drops below 0.8 and there's a minor prediction oscillation.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": false,
+        "model_correct": true,
+        "fully_correct": false,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "keep_current",
+        "expected_models": [
+          "tcn"
+        ]
+      },
+      "latency_ms": 711.5
+    },
+    {
+      "scenario": "8_transformer_good_but_slow",
+      "ground_truth": "Good accuracy and confidence — keep or optionally downgrade",
+      "llm_response": "{\n  \"analysis\": \"Current model (transformer) shows high confidence and stable predictions for Fault 4, with a slight drop in average confidence but still above 0.6.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify keeping the current accurate model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current model (transformer) shows high confidence and stable predictions for Fault 4, with a slight drop in average confidence but still above 0.6.",
+        "recommendation": "keep_current",
+        "recommended_model": "",
+        "reason": "High confidence and stable predictions justify keeping the current accurate model.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "keep_current",
+        "llm_model": "",
+        "expected_action": "keep_current",
+        "expected_models": [
+          "tcn",
+          "tepnet"
+        ]
+      },
+      "latency_ms": 678.3
+    },
+    {
+      "scenario": "9_sudden_fault_onset",
+      "ground_truth": "Was normal (high avg conf) but suddenly low conf on fault — need accurate model to confirm",
+      "llm_response": "{\n  \"analysis\": \"Current confidence is low (0.33), but average confidence over 5 minutes is high (0.82). Predictions are stable with a majority of 'Normal' predictions.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"tcn\",\n  \"reason\": \"Low current confidence despite overall high average confidence and stable predictions.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current confidence is low (0.33), but average confidence over 5 minutes is high (0.82). Predictions are stable with a majority of 'Normal' predictions.",
+        "recommendation": "switch",
+        "recommended_model": "tcn",
+        "reason": "Low current confidence despite overall high average confidence and stable predictions.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": false,
+        "fully_correct": false,
+        "llm_action": "switch",
+        "llm_model": "tcn",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst",
+          "transformer"
+        ]
+      },
+      "latency_ms": 734.4
+    },
+    {
+      "scenario": "10_all_normal_fast_model",
+      "ground_truth": "Perfect normal operation, very high confidence — fast model is ideal",
+      "llm_response": "{\n  \"analysis\": \"Current model tcn is performing well with high confidence and stable predictions.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions indicate good performance of tcn.\",\n  \"confidence_in_decision\": 0.95,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current model tcn is performing well with high confidence and stable predictions.",
+        "recommendation": "keep_current",
+        "recommended_model": "",
+        "reason": "High confidence and stable predictions indicate good performance of tcn.",
+        "confidence_in_decision": 0.95,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "keep_current",
+        "llm_model": "",
+        "expected_action": "keep_current",
+        "expected_models": [
+          "tepnet"
+        ]
+      },
+      "latency_ms": 562.4
+    },
+    {
+      "scenario": "11_rare_fault_low_support",
+      "ground_truth": "Rare faults (16-20) with low confidence and high spread — need best model",
+      "llm_response": "{\n  \"analysis\": \"Current prediction confidence is low (0.44) and average confidence over 5 minutes is also below 0.6. Predictions are stable but not highly confident.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Low confidence in predictions requires a more accurate model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current prediction confidence is low (0.44) and average confidence over 5 minutes is also below 0.6. Predictions are stable but not highly confident.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Low confidence in predictions requires a more accurate model.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst"
+        ]
+      },
+      "latency_ms": 707.9
+    },
+    {
+      "scenario": "12_binary_oscillation",
+      "ground_truth": "Oscillating between normal and fault 3 — unclear boundary, need better model",
+      "llm_response": "{\n  \"analysis\": \"Current confidence is below the threshold of 0.6, and predictions are relatively balanced with a slight bias towards Fault 3.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Confidence is low, and predictions oscillate slightly.\",\n  \"confidence_in_decision\": 0.85,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current confidence is below the threshold of 0.6, and predictions are relatively balanced with a slight bias towards Fault 3.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Confidence is low, and predictions oscillate slightly.",
+        "confidence_in_decision": 0.85,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst",
+          "transformer",
+          "tcn"
+        ]
+      },
+      "latency_ms": 657.9
+    },
+    {
+      "scenario": "13_patchtst_perfect",
+      "ground_truth": "Near-perfect predictions — keep or downgrade to faster model both fine",
+      "llm_response": "{\n  \"analysis\": \"Current model patchtst is providing high confidence predictions with a stable distribution.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"High confidence and stable predictions justify keeping the accurate model.\",\n  \"confidence_in_decision\": 0.95,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current model patchtst is providing high confidence predictions with a stable distribution.",
+        "recommendation": "keep_current",
+        "recommended_model": "",
+        "reason": "High confidence and stable predictions justify keeping the accurate model.",
+        "confidence_in_decision": 0.95,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "keep_current",
+        "llm_model": "",
+        "expected_action": "keep_current",
+        "expected_models": [
+          "tcn",
+          "tepnet"
+        ]
+      },
+      "latency_ms": 564.5
+    },
+    {
+      "scenario": "14_tepnet_gradual_drift",
+      "ground_truth": "Confidence drifting down (0.72→0.61), spreading predictions — need escalation",
+      "llm_response": "{\n  \"analysis\": \"Current confidence is below the threshold of 0.6, and there are oscillations in prediction distribution.\",\n  \"recommendation\": \"switch\",\n  \"recommended_model\": \"patchtst\",\n  \"reason\": \"Confidence drops below threshold and predictions are not stable.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"warning\"\n}",
+      "decision": {
+        "analysis": "Current confidence is below the threshold of 0.6, and there are oscillations in prediction distribution.",
+        "recommendation": "switch",
+        "recommended_model": "patchtst",
+        "reason": "Confidence drops below threshold and predictions are not stable.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "warning"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "switch",
+        "llm_model": "patchtst",
+        "expected_action": "switch",
+        "expected_models": [
+          "patchtst",
+          "transformer"
+        ]
+      },
+      "latency_ms": 620.3
+    },
+    {
+      "scenario": "15_tcn_acceptable_performance",
+      "ground_truth": "Good confidence on TCN, no reason to change",
+      "llm_response": "{\n  \"analysis\": \"Current prediction is stable with high confidence, but there are occasional lower confidence predictions.\",\n  \"recommendation\": \"keep_current\",\n  \"recommended_model\": \"\",\n  \"reason\": \"Stable predictions and high average confidence justify keeping the balanced tcn model.\",\n  \"confidence_in_decision\": 0.9,\n  \"alert_level\": \"normal\"\n}",
+      "decision": {
+        "analysis": "Current prediction is stable with high confidence, but there are occasional lower confidence predictions.",
+        "recommendation": "keep_current",
+        "recommended_model": "",
+        "reason": "Stable predictions and high average confidence justify keeping the balanced tcn model.",
+        "confidence_in_decision": 0.9,
+        "alert_level": "normal"
+      },
+      "evaluation": {
+        "action_correct": true,
+        "model_correct": true,
+        "fully_correct": true,
+        "llm_action": "keep_current",
+        "llm_model": "",
+        "expected_action": "keep_current",
+        "expected_models": []
+      },
+      "latency_ms": 591.9
+    }
+  ]
+}
