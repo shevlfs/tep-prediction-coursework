@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEP Fault Diagnosis — Model Selection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e1e4e8; min-height: 100vh; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+        h1 { font-size: 1.8rem; font-weight: 600; margin-bottom: 6px; }
+        .subtitle { color: #8b949e; font-size: 0.95rem; margin-bottom: 24px; }
+
+        .board-status {
+            background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+            padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .status-dot.online { background: #3fb950; box-shadow: 0 0 6px #3fb95088; }
+        .status-dot.offline { background: #f85149; box-shadow: 0 0 6px #f8514988; }
+        .status-dot.loading { background: #d29922; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .status-text { font-size: 0.9rem; }
+        .status-text strong { color: #e1e4e8; }
+        .status-text span { color: #8b949e; }
+        .live-metric { background: #0d1117; border-radius: 6px; padding: 6px 12px; font-size: 0.85rem; }
+        .live-metric .lbl { color: #8b949e; font-size: 0.7rem; text-transform: uppercase; }
+        .live-metric .val { font-weight: 600; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .card {
+            background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+            padding: 20px; cursor: pointer; transition: all 0.15s ease; position: relative;
+        }
+        .card:hover { border-color: #58a6ff; transform: translateY(-2px); }
+        .card.selected { border-color: #58a6ff; box-shadow: 0 0 0 1px #58a6ff; }
+        .card.active { border-color: #3fb950; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .card-name { font-size: 1.1rem; font-weight: 600; }
+        .card-params { font-size: 0.8rem; color: #8b949e; background: #21262d; padding: 2px 8px; border-radius: 12px; }
+        .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .stat { background: #0d1117; border-radius: 6px; padding: 10px; }
+        .stat-label { font-size: 0.7rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .stat-value { font-size: 1.1rem; font-weight: 600; }
+        .stat-value.good { color: #3fb950; }
+        .stat-value.warn { color: #d29922; }
+        .stat-value.bad { color: #f85149; }
+        .badge { display: inline-block; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 500; }
+        .badge-best { background: #0d4429; color: #3fb950; }
+        .badge-default { background: #0c2d6b; color: #58a6ff; }
+        .badge-active { background: #0d4429; color: #3fb950; }
+
+        .quant-toggle { display: flex; gap: 0; margin-bottom: 24px; background: #21262d; border-radius: 8px; padding: 3px; width: fit-content; }
+        .quant-btn {
+            padding: 8px 20px; border: none; background: transparent; color: #8b949e;
+            font-size: 0.9rem; cursor: pointer; border-radius: 6px; font-weight: 500; transition: all 0.15s;
+        }
+        .quant-btn.active { background: #30363d; color: #e1e4e8; }
+
+        .detail-panel {
+            background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+            padding: 24px; margin-bottom: 24px; display: none;
+        }
+        .detail-panel.visible { display: block; }
+        .detail-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; }
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+        .detail-stat { background: #0d1117; border-radius: 8px; padding: 14px; }
+        .detail-stat .stat-value { font-size: 1.3rem; }
+
+        .deploy-section { display: flex; align-items: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+        .deploy-btn {
+            padding: 10px 24px; border: none; border-radius: 8px; font-size: 0.9rem;
+            font-weight: 600; cursor: pointer; transition: all 0.15s;
+            background: #238636; color: #fff;
+        }
+        .deploy-btn:hover { background: #2ea043; }
+        .deploy-btn:disabled { background: #21262d; color: #8b949e; cursor: not-allowed; }
+        .deploy-btn.deploying { background: #d29922; }
+        .deploy-msg { font-size: 0.85rem; color: #8b949e; }
+        .deploy-msg.error { color: #f85149; }
+        .deploy-msg.success { color: #3fb950; }
+
+        .accuracy-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+        .accuracy-table th, .accuracy-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #21262d; }
+        .accuracy-table th { color: #8b949e; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
+        .accuracy-table tr:hover { background: #1c2128; }
+        .section-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; margin-top: 32px; }
+        .fault-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px; margin-top: 16px; }
+        .fault-item { padding: 8px 12px; background: #161b22; border-radius: 6px; font-size: 0.85rem; border: 1px solid #21262d; }
+        .fault-item .fault-id { color: #58a6ff; font-weight: 600; margin-right: 6px; }
+
+        .infra-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 24px; }
+        .infra-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 14px 16px; min-width: 0; }
+        .infra-card h3 { font-size: 0.85rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; margin-bottom: 8px; }
+        .infra-card a, .infra-card code { color: #58a6ff; text-decoration: none; font-size: 0.85rem; }
+        .infra-card a:hover { text-decoration: underline; }
+        .infra-card code { background: #0d1117; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; color: #c9d1d9; }
+        .infra-card .row { display: flex; flex-direction: column; gap: 2px; margin: 6px 0; font-size: 0.8rem; min-width: 0; }
+        .infra-card .row .lbl { color: #8b949e; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .infra-card .row .val { color: #c9d1d9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .infra-card .row a.val, .infra-card .row code.val { display: block; }
+
+        .host-selector { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+        .host-selector select, .host-selector input {
+            background: #0d1117; color: #e1e4e8; border: 1px solid #30363d;
+            border-radius: 6px; padding: 6px 10px; font-size: 0.85rem;
+        }
+        .host-selector input { width: 140px; }
+        .host-selector button {
+            background: #21262d; color: #e1e4e8; border: 1px solid #30363d;
+            border-radius: 6px; padding: 6px 10px; font-size: 0.8rem; cursor: pointer;
+        }
+        .host-selector button:hover { background: #30363d; }
+
+        .containers-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.85rem; }
+        .containers-table th, .containers-table td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #21262d; }
+        .containers-table th { color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
+        .containers-table td code { background: #0d1117; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; color: #c9d1d9; }
+        .containers-table .ctr-btn {
+            background: #21262d; color: #58a6ff; border: 1px solid #30363d; border-radius: 4px;
+            padding: 3px 10px; font-size: 0.75rem; cursor: pointer; margin-right: 4px;
+        }
+        .containers-table .ctr-btn:hover { background: #30363d; }
+
+        .stop-btn {
+            padding: 10px 18px; border: 1px solid #f85149; border-radius: 8px; font-size: 0.9rem;
+            font-weight: 600; cursor: pointer; background: transparent; color: #f85149;
+        }
+        .stop-btn:hover { background: #f8514922; }
+        .stop-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .modal-backdrop {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none;
+            align-items: center; justify-content: center; z-index: 100;
+        }
+        .modal-backdrop.visible { display: flex; }
+        .modal {
+            background: #0d1117; border: 1px solid #30363d; border-radius: 10px;
+            width: 90%; max-width: 900px; max-height: 80vh; display: flex; flex-direction: column;
+        }
+        .modal-header { padding: 14px 20px; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h3 { font-size: 1rem; font-weight: 600; }
+        .modal-close { background: none; border: none; color: #8b949e; font-size: 1.5rem; cursor: pointer; line-height: 1; }
+        .modal-body { padding: 16px 20px; overflow: auto; flex: 1; }
+        .modal-body pre {
+            background: #010409; padding: 12px; border-radius: 6px; font-size: 0.8rem;
+            color: #c9d1d9; white-space: pre-wrap; word-break: break-word; font-family: ui-monospace, SFMono-Regular, monospace;
+        }
+
+        .src-note { color: #8b949e; font-size: 0.75rem; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TEP Fault Diagnosis on RK3568 NPU</h1>
+        <p class="subtitle">Select and deploy models to the Rockchip RK3568 board ({{ rk3568_host }})</p>
+
+        <div class="board-status" id="board-status">
+            <div class="status-dot loading" id="status-dot"></div>
+            <div class="status-text" id="status-text">
+                <strong>RK3568</strong> <span>Checking...</span>
+            </div>
+            <div class="host-selector">
+                <label for="host-select" style="font-size:0.8rem;color:#8b949e;">Host</label>
+                <select id="host-select">
+                    {% for h in rk3568_hosts %}
+                    <option value="{{ h }}" {% if h == rk3568_host %}selected{% endif %}>{{ h }}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" id="host-input" placeholder="192.168.x.x or host" />
+                <button onclick="addHost()" title="Add host to selector">+ Add</button>
+                <button onclick="removeHost()" title="Remove currently selected host" style="color:#f85149;">×</button>
+            </div>
+        </div>
+
+        <div class="section-title" style="margin-top:0;">Infrastructure</div>
+        <div class="infra-grid">
+            <div class="infra-card">
+                <h3>OPC UA server (x86)</h3>
+                <div class="row"><span class="lbl">Host</span><code class="val">{{ x86_host }}</code></div>
+                <div class="row"><span class="lbl">Endpoint</span><a class="val" href="opc.tcp://{{ x86_host }}:{{ opcua_port }}">opc.tcp://{{ x86_host }}:{{ opcua_port }}</a></div>
+                <div class="row"><span class="lbl">Publishes</span><span class="val">52 tags (xmeas_1..41, xmv_1..11)</span></div>
+            </div>
+            <div class="infra-card">
+                <h3>Edge (RK3568)</h3>
+                <div class="row"><span class="lbl">SSH</span><code class="val" id="infra-rk-host">{{ rk3568_host }}</code></div>
+                <div class="row"><span class="lbl">Metrics</span><a class="val" id="infra-metrics" href="http://{{ rk3568_host }}:{{ metrics_port }}/metrics" target="_blank">http://{{ rk3568_host }}:{{ metrics_port }}/metrics</a></div>
+                <div class="row"><span class="lbl">Load / Mem</span><span class="val" id="infra-rk-load" style="color:#8b949e">—</span></div>
+            </div>
+            <div class="infra-card">
+                <h3>Observability</h3>
+                <div class="row"><span class="lbl">Grafana</span><a class="val" href="{{ grafana_url }}" target="_blank">{{ grafana_url }}</a></div>
+                <div class="row"><span class="lbl">Prometheus</span><a class="val" href="{{ prometheus_url }}" target="_blank">{{ prometheus_url }}</a></div>
+                <div class="row"><span class="lbl">Accuracy source</span><span class="val" style="color:#8b949e" id="acc-src">{{ accuracy_source }}</span></div>
+            </div>
+        </div>
+
+        <div class="quant-toggle">
+            <button class="quant-btn active" data-quant="fp16">FP16</button>
+            <button class="quant-btn" data-quant="int8">INT8</button>
+        </div>
+
+        <div class="grid" id="model-grid">
+            {% for key, m in models.items() %}
+            <div class="card" data-model="{{ key }}" onclick="selectModel('{{ key }}')">
+                <div class="card-header">
+                    <span class="card-name">
+                        {{ m.name }}
+                        <span class="badge badge-active" data-active-badge="{{ key }}" style="display:none;">RUNNING</span>
+                    </span>
+                    <span class="card-params">{{ m.params }} params</span>
+                </div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <div class="stat-label">Accuracy (FP16)</div>
+                        <div class="stat-value {% if accuracy[key].fp16 >= 80 %}good{% elif accuracy[key].fp16 >= 70 %}warn{% else %}bad{% endif %}">
+                            {{ "%.1f"|format(accuracy[key].fp16) }}%
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">NPU Latency</div>
+                        {% set bkey = key ~ '_fp16' %}
+                        {% if bkey in benchmarks and 'npu' in benchmarks[bkey] %}
+                        <div class="stat-value" data-fp16="{{ benchmarks[bkey].npu.mean_ms }}"
+                             {% if key ~ '_int8' in benchmarks %}data-int8="{{ benchmarks[key ~ '_int8'].npu.mean_ms }}"{% endif %}>
+                            {{ "%.1f"|format(benchmarks[bkey].npu.mean_ms) }} ms
+                        </div>
+                        {% else %}
+                        <div class="stat-value">N/A</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="detail-panel" id="detail-panel">
+            <div class="detail-title" id="detail-title"></div>
+            <div class="detail-grid" id="detail-stats"></div>
+            <div class="deploy-section">
+                <button class="deploy-btn" id="deploy-btn" onclick="deployModel()">Deploy to RK3568</button>
+                <button class="stop-btn" id="stop-btn" onclick="stopInference()">Stop</button>
+                <span class="deploy-msg" id="deploy-msg"></span>
+            </div>
+        </div>
+
+        <div class="section-title">Docker Containers on <code id="ctr-host-label">{{ rk3568_host }}</code></div>
+        <table class="containers-table" id="containers-table">
+            <thead><tr><th>Name</th><th>Image</th><th>Status</th><th>Ports</th><th>ID</th><th></th></tr></thead>
+            <tbody id="containers-tbody"><tr><td colspan="6" style="color:#8b949e;">Loading…</td></tr></tbody>
+        </table>
+
+        <div class="section-title">Accuracy Comparison <span class="src-note">(source: <span id="acc-src-inline">{{ accuracy_source }}</span>)</span></div>
+        <table class="accuracy-table">
+            <thead>
+                <tr><th>Model</th><th>FP32</th><th>FP16</th><th>INT8</th><th>INT8 Drop</th></tr>
+            </thead>
+            <tbody>
+                {% for key, m in models.items() %}
+                <tr>
+                    <td><strong>{{ m.name }}</strong></td>
+                    <td>{{ "%.2f"|format(accuracy[key].fp32) }}%</td>
+                    <td class="good">{{ "%.2f"|format(accuracy[key].fp16) }}%</td>
+                    <td style="color: #f85149;">{{ "%.2f"|format(accuracy[key].int8) }}%</td>
+                    <td style="color: #f85149;">-{{ "%.1f"|format(accuracy[key].fp16 - accuracy[key].int8) }}pp</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="section-title">TEP Fault Classes</div>
+        <div class="fault-list">
+            {% for id, label in fault_labels.items() %}
+            <div class="fault-item"><span class="fault-id">#{{ id }}</span>{{ label }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="logs-modal" onclick="if(event.target===this)closeLogs()">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="logs-title">Container logs</h3>
+                <button class="modal-close" onclick="closeLogs()">×</button>
+            </div>
+            <div class="modal-body"><pre id="logs-body">Loading…</pre></div>
+        </div>
+    </div>
+
+    <script>
+        let currentModel = null;
+        let currentQuant = 'fp16';
+        let boardModel = null;
+        let boardQuant = null;
+        let deploying = false;
+        const hostSelect = document.getElementById('host-select');
+        const hostInput = document.getElementById('host-input');
+        const LS_KEY = 'tep_custom_hosts';
+        const LS_SEL = 'tep_selected_host';
+
+        function loadCustomHosts() {
+            try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch { return []; }
+        }
+        function saveCustomHosts(list) { localStorage.setItem(LS_KEY, JSON.stringify(list)); }
+
+        // Hydrate dropdown with user-added hosts
+        (function initHosts() {
+            const existing = new Set(Array.from(hostSelect.options).map(o => o.value));
+            loadCustomHosts().forEach(h => {
+                if (!existing.has(h)) {
+                    const opt = document.createElement('option');
+                    opt.value = h; opt.textContent = h + ' (custom)';
+                    hostSelect.appendChild(opt);
+                }
+            });
+            const saved = localStorage.getItem(LS_SEL);
+            if (saved && Array.from(hostSelect.options).some(o => o.value === saved)) {
+                hostSelect.value = saved;
+            }
+        })();
+
+        let currentHost = hostSelect.value;
+
+        function refreshInfraLinks() {
+            // Only the RK3568-side links follow the host dropdown; OPC UA endpoint
+            // is bound to the x86 server ({{ x86_host }}) and never changes here.
+            document.getElementById('infra-rk-host').textContent = currentHost;
+            const m = `http://${currentHost}:{{ metrics_port }}/metrics`;
+            document.getElementById('infra-metrics').textContent = m;
+            document.getElementById('infra-metrics').href = m;
+            document.getElementById('ctr-host-label').textContent = currentHost;
+        }
+
+        hostSelect.addEventListener('change', () => {
+            currentHost = hostSelect.value;
+            localStorage.setItem(LS_SEL, currentHost);
+            refreshInfraLinks();
+            fetchBoardStatus();
+        });
+
+        function addHost() {
+            const raw = hostInput.value.trim();
+            if (!raw) return;
+            if (!/^[a-zA-Z0-9][a-zA-Z0-9.\-]*$/.test(raw)) { alert('Invalid host'); return; }
+            if (Array.from(hostSelect.options).some(o => o.value === raw)) {
+                hostSelect.value = raw;
+            } else {
+                const opt = document.createElement('option');
+                opt.value = raw; opt.textContent = raw + ' (custom)';
+                hostSelect.appendChild(opt);
+                hostSelect.value = raw;
+                const list = loadCustomHosts();
+                if (!list.includes(raw)) { list.push(raw); saveCustomHosts(list); }
+            }
+            hostInput.value = '';
+            currentHost = raw;
+            localStorage.setItem(LS_SEL, currentHost);
+            refreshInfraLinks();
+            fetchBoardStatus();
+        }
+
+        function removeHost() {
+            const list = loadCustomHosts();
+            if (!list.includes(currentHost)) { alert('Only custom-added hosts can be removed'); return; }
+            saveCustomHosts(list.filter(h => h !== currentHost));
+            const opt = Array.from(hostSelect.options).find(o => o.value === currentHost);
+            if (opt) opt.remove();
+            currentHost = hostSelect.value;
+            localStorage.setItem(LS_SEL, currentHost);
+            refreshInfraLinks();
+            fetchBoardStatus();
+        }
+
+        hostInput.addEventListener('keydown', e => { if (e.key === 'Enter') addHost(); });
+
+        // Apply hydrated host state on first render.
+        refreshInfraLinks();
+
+        function hostQS() { return `?host=${encodeURIComponent(currentHost)}`; }
+
+        document.querySelectorAll('.quant-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.quant-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentQuant = btn.dataset.quant;
+                updateLatencyDisplay();
+                if (currentModel) selectModel(currentModel);
+            });
+        });
+
+        function updateLatencyDisplay() {
+            document.querySelectorAll('.card .stat-value[data-fp16]').forEach(el => {
+                const val = parseFloat(el.dataset[currentQuant]);
+                if (!isNaN(val)) el.textContent = val.toFixed(1) + ' ms';
+            });
+        }
+
+        function updateActiveBadges() {
+            document.querySelectorAll('[data-active-badge]').forEach(b => {
+                b.style.display = (b.dataset.activeBadge === boardModel) ? 'inline-block' : 'none';
+            });
+            document.querySelectorAll('.card').forEach(c => {
+                c.classList.toggle('active', c.dataset.model === boardModel);
+            });
+        }
+
+        function selectModel(model) {
+            currentModel = model;
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            document.querySelector(`.card[data-model="${model}"]`).classList.add('selected');
+
+            fetch('/api/select', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({model, quantization: currentQuant})
+            })
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('detail-panel').classList.add('visible');
+                document.getElementById('detail-title').textContent = data.display_name + ' — ' + data.quantization.toUpperCase();
+
+                const isActive = (model === boardModel && currentQuant === boardQuant);
+                document.getElementById('detail-stats').innerHTML = `
+                    <div class="detail-stat">
+                        <div class="stat-label">Accuracy</div>
+                        <div class="stat-value ${data.accuracy >= 70 ? 'good' : 'bad'}">
+                            ${data.accuracy !== null ? data.accuracy.toFixed(2) + '%' : 'N/A'}</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="stat-label">NPU Mean Latency</div>
+                        <div class="stat-value">${data.npu_latency_ms !== null ? data.npu_latency_ms.toFixed(1) + ' ms' : 'N/A'}</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="stat-label">NPU P95 Latency</div>
+                        <div class="stat-value">${data.npu_p95_ms !== null ? data.npu_p95_ms.toFixed(1) + ' ms' : 'N/A'}</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="stat-label">E2E (with OPC UA)</div>
+                        <div class="stat-value">${data.e2e_mean_ms !== null ? data.e2e_mean_ms.toFixed(0) + ' ms' : 'N/A'}</div>
+                    </div>
+                    <div class="detail-stat">
+                        <div class="stat-label">Parameters</div>
+                        <div class="stat-value">${data.params}</div>
+                    </div>
+                `;
+
+                const btn = document.getElementById('deploy-btn');
+                const msg = document.getElementById('deploy-msg');
+                if (isActive) {
+                    btn.disabled = true;
+                    btn.textContent = 'Already Running';
+                    msg.textContent = '';
+                    msg.className = 'deploy-msg';
+                } else {
+                    btn.disabled = deploying;
+                    btn.textContent = deploying ? 'Deploying...' : 'Deploy to RK3568';
+                    btn.className = deploying ? 'deploy-btn deploying' : 'deploy-btn';
+                }
+            });
+        }
+
+        function renderContainers(containers) {
+            const tbody = document.getElementById('containers-tbody');
+            if (!containers || containers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="color:#8b949e;">No containers running</td></tr>';
+                return;
+            }
+            tbody.innerHTML = containers.map(c => {
+                const up = c.status.startsWith('Up');
+                const color = up ? '#3fb950' : '#f85149';
+                return `
+                <tr>
+                    <td><strong>${c.name}</strong></td>
+                    <td><code>${c.image}</code></td>
+                    <td><span style="color:${color};font-weight:600;">${c.status}</span></td>
+                    <td><code>${c.ports || '—'}</code></td>
+                    <td><code>${c.id}</code></td>
+                    <td>
+                        <button class="ctr-btn" onclick="viewLogs('${c.name}')">logs</button>
+                    </td>
+                </tr>`;
+            }).join('');
+        }
+
+        function viewLogs(name) {
+            document.getElementById('logs-modal').classList.add('visible');
+            document.getElementById('logs-title').textContent = `Logs — ${name} @ ${currentHost}`;
+            document.getElementById('logs-body').textContent = 'Loading…';
+            fetch(`/api/board/logs?host=${encodeURIComponent(currentHost)}&container=${encodeURIComponent(name)}&lines=200`)
+                .then(r => r.json())
+                .then(d => {
+                    document.getElementById('logs-body').textContent = (d.lines || [d.error || '(empty)']).join('\n');
+                });
+        }
+
+        function closeLogs() { document.getElementById('logs-modal').classList.remove('visible'); }
+
+        function stopInference() {
+            if (!confirm(`Stop inference client on ${currentHost}?`)) return;
+            const msg = document.getElementById('deploy-msg');
+            msg.textContent = 'Stopping…';
+            msg.className = 'deploy-msg';
+            fetch('/api/deploy/stop', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({host: currentHost})
+            })
+            .then(r => r.json())
+            .then(d => {
+                if (d.error) { msg.textContent = d.error; msg.className = 'deploy-msg error'; }
+                else { msg.textContent = 'Inference stopped'; msg.className = 'deploy-msg success'; boardModel = null; boardQuant = null; updateActiveBadges(); fetchBoardStatus(); }
+            });
+        }
+
+        function deployModel() {
+            if (!currentModel || deploying) return;
+            deploying = true;
+
+            const btn = document.getElementById('deploy-btn');
+            const msg = document.getElementById('deploy-msg');
+            btn.disabled = true;
+            btn.textContent = 'Deploying...';
+            btn.className = 'deploy-btn deploying';
+            msg.textContent = 'Starting deployment...';
+            msg.className = 'deploy-msg';
+
+            fetch('/api/deploy', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({model: currentModel, quantization: currentQuant, host: currentHost})
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    msg.textContent = data.error;
+                    msg.className = 'deploy-msg error';
+                    deploying = false;
+                    btn.disabled = false;
+                    btn.textContent = 'Deploy to RK3568';
+                    btn.className = 'deploy-btn';
+                } else {
+                    pollDeployStatus();
+                }
+            });
+        }
+
+        function pollDeployStatus() {
+            fetch('/api/deploy/status')
+            .then(r => r.json())
+            .then(data => {
+                const msg = document.getElementById('deploy-msg');
+                const btn = document.getElementById('deploy-btn');
+
+                msg.textContent = data.message;
+
+                if (data.state === 'deploying') {
+                    msg.className = 'deploy-msg';
+                    setTimeout(pollDeployStatus, 2000);
+                } else if (data.state === 'deployed') {
+                    msg.className = 'deploy-msg success';
+                    deploying = false;
+                    boardModel = data.model;
+                    boardQuant = data.quantization;
+                    updateActiveBadges();
+                    btn.disabled = true;
+                    btn.textContent = 'Already Running';
+                    btn.className = 'deploy-btn';
+                    fetchBoardStatus();
+                } else if (data.state === 'error') {
+                    msg.className = 'deploy-msg error';
+                    deploying = false;
+                    btn.disabled = false;
+                    btn.textContent = 'Deploy to RK3568';
+                    btn.className = 'deploy-btn';
+                }
+            });
+        }
+
+        function fetchBoardStatus() {
+            fetch('/api/board/status' + hostQS())
+            .then(r => r.json())
+            .then(data => {
+                const dot = document.getElementById('status-dot');
+                const text = document.getElementById('status-text');
+                const statusBar = document.getElementById('board-status');
+
+                // remove old live metrics
+                statusBar.querySelectorAll('.live-metric').forEach(e => e.remove());
+
+                renderContainers(data.containers);
+                if (data.system && data.system.load) {
+                    document.getElementById('infra-rk-load').textContent = data.system.load + ' · ' + (data.system.mem || '');
+                }
+
+                if (data.online) {
+                    dot.className = 'status-dot online';
+                    boardModel = data.current_model;
+                    boardQuant = data.current_quantization;
+
+                    let info = `<strong>${data.host || 'RK3568'}</strong> <span>Online`;
+                    if (data.current_model) {
+                        info += ` — running <strong>${data.current_model}</strong> (${data.current_quantization || 'fp16'})`;
+                    }
+                    const total = data.containers ? data.containers.length : 0;
+                    const running = data.containers ? data.containers.filter(c => c.status.startsWith('Up')).length : 0;
+                    info += ` — ${running}/${total} containers up</span>`;
+                    text.innerHTML = info;
+                    updateActiveBadges();
+                    fetchBoardMetrics();
+                } else {
+                    dot.className = 'status-dot offline';
+                    text.innerHTML = `<strong>RK3568</strong> <span>Offline — ${data.error || 'cannot connect'}</span>`;
+                    boardModel = null;
+                    boardQuant = null;
+                    updateActiveBadges();
+                }
+            })
+            .catch(() => {
+                document.getElementById('status-dot').className = 'status-dot offline';
+                document.getElementById('status-text').innerHTML = '<strong>RK3568</strong> <span>Offline</span>';
+            });
+        }
+
+        function fetchBoardMetrics() {
+            fetch('/api/board/metrics' + hostQS())
+            .then(r => r.json())
+            .then(data => {
+                if (!data.available) return;
+                const bar = document.getElementById('board-status');
+                bar.querySelectorAll('.live-metric').forEach(e => e.remove());
+
+                if (data.fault_label !== undefined) {
+                    bar.innerHTML += `<div class="live-metric"><div class="lbl">Prediction</div><div class="val">${data.fault_label}</div></div>`;
+                }
+                if (data.confidence !== undefined) {
+                    bar.innerHTML += `<div class="live-metric"><div class="lbl">Confidence</div><div class="val">${(data.confidence * 100).toFixed(1)}%</div></div>`;
+                }
+                if (data.buffer_size !== undefined) {
+                    bar.innerHTML += `<div class="live-metric"><div class="lbl">Buffer</div><div class="val">${data.buffer_size}/32</div></div>`;
+                }
+            });
+        }
+
+        // Initial load
+        fetchBoardStatus();
+        setInterval(fetchBoardStatus, 10000);
+    </script>
+</body>
+</html>
