@@ -22,14 +22,23 @@ class PositionalEncoding(nn.Module):
 class TransformerNet(nn.Module):
     """Transformer encoder for TEP fault classification."""
 
-    def __init__(self, in_channels: int = 52, num_classes: int = 21,
-                 d_model: int = 64, nhead: int = 4, num_layers: int = 2):
+    def __init__(
+        self,
+        in_channels: int = 52,
+        num_classes: int = 21,
+        d_model: int = 64,
+        nhead: int = 4,
+        num_layers: int = 2
+    ):
         super().__init__()
         self.input_proj = nn.Linear(in_channels, d_model)
         self.pos_enc = PositionalEncoding(d_model)
         encoder_layer = nn.TransformerEncoderLayer(
-            d_model=d_model, nhead=nhead, dim_feedforward=d_model * 4,
-            batch_first=True, dropout=0.1,
+            d_model=d_model,
+            nhead=nhead,
+            dim_feedforward=d_model * 4,
+            batch_first=True,
+            dropout=0.1,
         )
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         self.classifier = nn.Linear(d_model, num_classes)

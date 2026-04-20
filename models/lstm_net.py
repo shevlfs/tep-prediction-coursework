@@ -7,8 +7,13 @@ import torch.nn as nn
 class LSTMNet(nn.Module):
     """Bidirectional LSTM for TEP fault classification."""
 
-    def __init__(self, in_channels: int = 52, num_classes: int = 21,
-                 hidden: int = 64, num_layers: int = 2):
+    def __init__(
+        self,
+        in_channels: int = 52,
+        num_classes: int = 21,
+        hidden: int = 64,
+        num_layers: int = 2
+    ):
         super().__init__()
         self.lstm = nn.LSTM(
             input_size=in_channels,

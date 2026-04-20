@@ -9,9 +9,16 @@ class PatchTST(nn.Module):
     Inspired by the PatchTST architecture — segments time series into
     non-overlapping patches before transformer encoding."""
 
-    def __init__(self, in_channels: int = 52, num_classes: int = 21,
-                 seq_len: int = 32, patch_len: int = 8,
-                 d_model: int = 64, nhead: int = 4, num_layers: int = 2):
+    def __init__(
+        self,
+        in_channels: int = 52,
+        num_classes: int = 21,
+        seq_len: int = 32,
+        patch_len: int = 8,
+        d_model: int = 64,
+        nhead: int = 4,
+        num_layers: int = 2
+    ):
         super().__init__()
         self.patch_len = patch_len
         n_patches = seq_len // patch_len
@@ -21,8 +28,11 @@ class PatchTST(nn.Module):
         self.pos_embed = nn.Parameter(torch.randn(1, n_patches, d_model) * 0.02)
 
         encoder_layer = nn.TransformerEncoderLayer(
-            d_model=d_model, nhead=nhead, dim_feedforward=d_model * 4,
-            batch_first=True, dropout=0.1
+            d_model=d_model,
+            nhead=nhead,
+            dim_feedforward=d_model * 4,
+            batch_first=True,
+            dropout=0.1
         )
         self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         self.classifier = nn.Linear(d_model, num_classes)
