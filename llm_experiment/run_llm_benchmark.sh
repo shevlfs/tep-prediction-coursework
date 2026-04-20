@@ -22,20 +22,18 @@ if [ ! -f "$MODEL" ]; then
     exit 1
 fi
 
-echo "=== LLM Benchmark on RK3568 ARM ===" | tee "$OUTPUT"
+echo "LLM Benchmark on RK3568" | tee "$OUTPUT"
 echo "Model: $(basename $MODEL)" | tee -a "$OUTPUT"
 echo "Date: $(date)" | tee -a "$OUTPUT"
 echo "" | tee -a "$OUTPUT"
 
-# System info
-echo "=== System Info ===" | tee -a "$OUTPUT"
+echo "System Info" | tee -a "$OUTPUT"
 echo "CPU: $(cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d: -f2 | xargs)" | tee -a "$OUTPUT"
 echo "Cores: $(nproc)" | tee -a "$OUTPUT"
 echo "RAM: $(free -h | awk '/^Mem:/ {print $2}')" | tee -a "$OUTPUT"
 echo "" | tee -a "$OUTPUT"
 
-# Benchmark: generate 128 tokens
-echo "=== Benchmark: 128 token generation ===" | tee -a "$OUTPUT"
+echo "Benchmark: 128 token generation" | tee -a "$OUTPUT"
 $LLAMA_BIN \
     -m "$MODEL" \
     -p "Explain what a neural processing unit (NPU) is and why it is useful for edge AI inference:" \
@@ -45,9 +43,8 @@ $LLAMA_BIN \
     2>&1 | tee -a "$OUTPUT"
 
 echo "" | tee -a "$OUTPUT"
-echo "=== Benchmark: batch processing (prompt eval) ===" | tee -a "$OUTPUT"
+echo "Benchmark: batch processing (prompt eval)" | tee -a "$OUTPUT"
 
-# Benchmark: prompt processing speed
 $LLAMA_BIN \
     -m "$MODEL" \
     -p "The Tennessee Eastman Process is a widely used benchmark for fault detection and diagnosis in chemical engineering. It simulates a realistic chemical plant with multiple operating modes and fault conditions. Machine learning models, particularly convolutional neural networks and recurrent neural networks, have been applied to this problem with varying degrees of success. Neural Processing Units offer hardware acceleration for these models at the edge." \
@@ -57,5 +54,5 @@ $LLAMA_BIN \
     2>&1 | tee -a "$OUTPUT"
 
 echo "" | tee -a "$OUTPUT"
-echo "=== Benchmark complete ===" | tee -a "$OUTPUT"
+echo "Benchmark complete" | tee -a "$OUTPUT"
 echo "Results saved to $OUTPUT"
