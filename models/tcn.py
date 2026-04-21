@@ -15,7 +15,9 @@ class TemporalBlock(nn.Module):
             padding=self.padding,
             dilation=dilation
         )
+        self.bn1 = nn.BatchNorm1d(out_channels)
         self.relu1 = nn.ReLU()
+        self.drop1 = nn.Dropout(p=0.2)
         self.conv2 = nn.Conv1d(
             out_channels,
             out_channels,
@@ -23,7 +25,9 @@ class TemporalBlock(nn.Module):
             padding=self.padding,
             dilation=dilation
         )
+        self.bn2 = nn.BatchNorm1d(out_channels)
         self.relu2 = nn.ReLU()
+        self.drop2 = nn.Dropout(p=0.2)
         if in_channels != out_channels:
             self.downsample = nn.Conv1d(
                 in_channels,
@@ -35,13 +39,17 @@ class TemporalBlock(nn.Module):
 
     def forward(self, x):
         out = self.conv1(x)
+        out = self.bn1(out)
         if self.padding > 0:
             out = out[:, :, :-self.padding]
         out = self.relu1(out)
+        out = self.drop1(out)
         out = self.conv2(out)
+        out = self.bn2(out)
         if self.padding > 0:
             out = out[:, :, :-self.padding]
         out = self.relu2(out)
+        out = self.drop2(out)
         return out + self.downsample(x)
 
 

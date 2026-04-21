@@ -21,7 +21,9 @@ class LSTMNet(nn.Module):
             num_layers=num_layers,
             batch_first=True,
             bidirectional=True,
+            dropout=0.3,
         )
+        self.dropout = nn.Dropout(p=0.3)
         self.classifier = nn.Linear(hidden * 2, num_classes)
 
     def forward(self, x):
@@ -30,4 +32,4 @@ class LSTMNet(nn.Module):
         out, _ = self.lstm(x)
         # Take last timestep
         h = out[:, -1, :]
-        return self.classifier(h)
+        return self.classifier(self.dropout(h))
