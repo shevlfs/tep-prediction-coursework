@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import sys
 import time
 import signal
@@ -20,12 +21,14 @@ except ImportError:
 sys.stdout.reconfigure(line_buffering=True)
 sys.stderr.reconfigure(line_buffering=True)
 
+log = logging.getLogger(__name__)
+
 AVAILABLE_MODELS = {
-    "tepnet":      {"rknn_fp16": "tepnet/model_fp16.rknn",      "rknn_int8": "tepnet/model_int8.rknn",      "norm": "tepnet"},
-    "tcn":         {"rknn_fp16": "tcn/model_fp16.rknn",         "rknn_int8": "tcn/model_int8.rknn",         "norm": "tcn"},
-    "lstm":        {"rknn_fp16": "lstm/model_fp16.rknn",        "rknn_int8": "lstm/model_int8.rknn",        "norm": "lstm"},
+    "tepnet": {"rknn_fp16": "tepnet/model_fp16.rknn", "rknn_int8": "tepnet/model_int8.rknn", "norm": "tepnet"},
+    "tcn": {"rknn_fp16": "tcn/model_fp16.rknn", "rknn_int8": "tcn/model_int8.rknn", "norm": "tcn"},
+    "lstm": {"rknn_fp16": "lstm/model_fp16.rknn", "rknn_int8": "lstm/model_int8.rknn", "norm": "lstm"},
     "transformer": {"rknn_fp16": "transformer/model_fp16.rknn", "rknn_int8": "transformer/model_int8.rknn", "norm": "transformer"},
-    "patchtst":    {"rknn_fp16": "patchtst/model_fp16.rknn",    "rknn_int8": "patchtst/model_int8.rknn",    "norm": "patchtst"},
+    "patchtst": {"rknn_fp16": "patchtst/model_fp16.rknn", "rknn_int8": "patchtst/model_int8.rknn", "norm": "patchtst"},
 }
 
 WINDOW_SIZE = 32
@@ -66,8 +69,11 @@ running = True
 
 if HAS_PROMETHEUS:
     INFERENCE_TOTAL = Counter("tep_inference_total", "Total inference count", ["predicted_class"])
-    INFERENCE_LATENCY = Histogram("tep_inference_latency_seconds", "Inference latency in seconds",
-                                  buckets=[0.01, 0.025, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5, 1.0])
+    INFERENCE_LATENCY = Histogram(
+        "tep_inference_latency_seconds",
+        "Inference latency in seconds",
+        buckets=[0.01, 0.025, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5, 1.0]
+    )
     PREDICTION_CONFIDENCE = Gauge("tep_prediction_confidence", "Confidence of the latest prediction")
     CURRENT_PREDICTION = Gauge("tep_current_prediction", "Current predicted fault class")
     BUFFER_SIZE = Gauge("tep_buffer_size", "Current sliding window buffer size")
@@ -82,22 +88,38 @@ def stop_handler(signum, frame):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="TEP Inference OPC UA Client")
-    parser.add_argument("server_url", nargs="?", default="opc.tcp://192.168.88.243:4840",
-                        help="OPC UA server URL")
-    parser.add_argument("--model", choices=list(AVAILABLE_MODELS.keys()),
-                        default=os.environ.get("MODEL", "patchtst"),
-                        help="Model architecture (default: patchtst, env: MODEL)")
-    parser.add_argument("--quantization", choices=["fp16", "int8"],
-                        default=os.environ.get("QUANTIZATION", "fp16"),
-                        help="Quantization type (default: fp16, env: QUANTIZATION)")
-    parser.add_argument("--rknn-dir", type=Path,
-                        default=Path(os.environ.get("RKNN_DIR", "/app/rknn")),
-                        help="Directory containing model subdirectories")
-    parser.add_argument("--norm-dir", type=Path,
-                        default=Path(os.environ.get("NORM_DIR", "/app/onnx")),
-                        help="Directory containing normalization param subdirectories")
-    parser.add_argument("--poll-interval", type=float, default=POLL_INTERVAL_S,
-                        help="Polling interval in seconds")
+    parser.add_argument(
+        "server_url",
+        nargs="?",
+        default="opc.tcp://192.168.88.243:4840",
+        help="OPC UA server URL"
+    )
+    parser.add_argument(
+        "--model",
+        choices=list(AVAILABLE_MODELS.keys()),
+        default=os.environ.get("MODEL", "patchtst"),
+        help="Model architecture (default: patchtst, env: MODEL)"
+    )
+    parser.add_argument(
+        "--quantization",
+        choices=["fp16", "int8"],
+        default=os.environ.get("QUANTIZATION", "fp16"),
+        help="Quantization type (default: fp16, env: QUANTIZATION)"
+    )
+    parser.add_argument(
+        "--rknn-dir",
+        type=Path,
+        default=Path(os.environ.get("RKNN_DIR", "/app/rknn")),
+        help="Directory containing model subdirectories")
+    parser.add_argument(
+        "--norm-dir", type=Path,
+        default=Path(os.environ.get("NORM_DIR", "/app/onnx")),
+        help="Directory containing normalization param subdirectories"
+    )
+    parser.add_argument(
+        "--poll-interval", type=float, default=POLL_INTERVAL_S,
+        help="Polling interval in seconds"
+    )
     return parser.parse_args()
 
 
@@ -112,7 +134,7 @@ def resolve_model_paths(args):
     if not rknn_path.exists():
         legacy = Path("/app/model_fp.rknn")
         if legacy.exists():
-            print(f"[WARN] Model {rknn_path} not found, falling back to {legacy}")
+            log.warning("model %s not found, falling back to %s", rknn_path, legacy)
             rknn_path = legacy
     if not norm_mean.exists():
         legacy_mean = Path("/app/norm_mean.npy")
@@ -131,12 +153,16 @@ def init_rknn(model_path: str) -> RKNNLite:
     ret = rknn.init_runtime()
     if ret != 0:
         raise RuntimeError(f"Failed to init RKNN runtime: {ret}")
-    print(f"[RKNN] Model loaded: {model_path}")
+    log.info("rknn model loaded: %s", model_path)
     return rknn
 
 
-def run_inference(rknn: RKNNLite, window: np.ndarray,
-                  mean: np.ndarray, std: np.ndarray) -> tuple[int, np.ndarray]:
+def run_inference(
+    rknn: RKNNLite,
+    window: np.ndarray,
+    mean: np.ndarray,
+    std: np.ndarray
+) -> tuple[int, np.ndarray]:
     normalized = (window - mean[:, np.newaxis]) / std[:, np.newaxis]
     input_data = np.expand_dims(normalized, axis=0).astype(np.float32)
     outputs = rknn.inference(inputs=[input_data])
@@ -154,6 +180,12 @@ def read_all_tags(opcua_client: OPCUAClient, ns_idx: int) -> list[float]:
 
 
 def main():
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s %(message)s",
+        datefmt="%Y-%m-%dT%H:%M:%S",
+    )
+
     signal.signal(signal.SIGINT, stop_handler)
     signal.signal(signal.SIGTERM, stop_handler)
 
@@ -161,33 +193,29 @@ def main():
 
     if HAS_PROMETHEUS:
         start_http_server(METRICS_PORT)
-        print(f"[METRICS] Prometheus metrics available on :{METRICS_PORT}/metrics")
+        log.info("prometheus metrics available on :%d/metrics", METRICS_PORT)
 
     rknn_path, norm_mean_path, norm_std_path = resolve_model_paths(args)
 
-    print(f"[CONFIG] Model: {args.model} ({args.quantization})")
-    print(f"[CONFIG] RKNN:  {rknn_path}")
-    print(f"[CONFIG] Norm:  {norm_mean_path.parent}")
+    log.info("model=%s quantization=%s", args.model, args.quantization)
+    log.info("rknn_path=%s", rknn_path)
+    log.info("norm_dir=%s", norm_mean_path.parent)
 
-    print("[INIT] Loading normalization params...")
     mean = np.load(str(norm_mean_path))
     std = np.load(str(norm_std_path))
-    print(f"[INIT] mean shape={mean.shape}, std shape={std.shape}")
+    log.info("normalization params loaded: mean shape=%s std shape=%s", mean.shape, std.shape)
 
-    print("[INIT] Loading RKNN model...")
     rknn = init_rknn(str(rknn_path))
 
     if HAS_PROMETHEUS:
         MODEL_INFO.labels(model_name=args.model, quantization=args.quantization).set(1)
 
-    print(f"[INIT] Connecting to OPC UA at {args.server_url}...")
+    log.info("connecting to opc ua server at %s", args.server_url)
     opcua_client = OPCUAClient(args.server_url)
     opcua_client.connect()
     ns_idx = opcua_client.get_namespace_index(NAMESPACE_URI)
-    print(f"[OPC UA] Connected to {args.server_url} (ns={ns_idx})")
-    print(f"[OPC UA] Reading {len(ALL_TAGS)} tags every {args.poll_interval}s")
-    print(f"[RKNN]   Window size: {WINDOW_SIZE}, will start inference after {WINDOW_SIZE} samples")
-    print("=" * 70)
+    log.info("connected to %s ns=%d", args.server_url, ns_idx)
+    log.info("polling %d tags every %.1fs, inference starts after %d samples", len(ALL_TAGS), args.poll_interval, WINDOW_SIZE)
 
     buffer = deque(maxlen=WINDOW_SIZE)
     cycle = 0
@@ -199,7 +227,7 @@ def main():
             try:
                 row = read_all_tags(opcua_client, ns_idx)
             except Exception as e:
-                print(f"[WARN] OPC UA read error: {e}")
+                log.warning("opcua read error: %s", e)
                 if HAS_PROMETHEUS:
                     OPCUA_READ_ERRORS.inc()
                 time.sleep(args.poll_interval)
@@ -212,8 +240,7 @@ def main():
                 BUFFER_SIZE.set(len(buffer))
 
             if len(buffer) < WINDOW_SIZE:
-                print(f"[{time.strftime('%H:%M:%S')}] Buffering {len(buffer)}/{WINDOW_SIZE} "
-                      f"| xmeas_1={row[0]:.4f}")
+                log.debug("buffering %d/%d xmeas_1=%.4f", len(buffer), WINDOW_SIZE, row[0])
             else:
                 window = np.array(buffer, dtype=np.float32).T
 
@@ -231,12 +258,10 @@ def main():
                     PREDICTION_CONFIDENCE.set(float(confidence))
                     CURRENT_PREDICTION.set(pred)
 
-                print(f"[{time.strftime('%H:%M:%S')}] "
-                      f"Cycle {cycle:5d} | "
-                      f"Pred: {pred:2d} ({label}) | "
-                      f"Conf: {confidence:.2%} | "
-                      f"xmeas_1={row[0]:.3f} xmeas_2={row[1]:.1f} | "
-                      f"{elapsed_ms:.0f}ms")
+                log.info(
+                    "cycle=%d pred=%d label=%s conf=%.2f%% xmeas_1=%.3f xmeas_2=%.1f elapsed_ms=%.0f",
+                    cycle, pred, label, confidence * 100, row[0], row[1], elapsed_ms,
+                )
 
             elapsed = time.time() - t0
             sleep_time = max(0, args.poll_interval - elapsed)
@@ -246,10 +271,10 @@ def main():
     except KeyboardInterrupt:
         pass
     finally:
-        print("\nShutting down...")
+        log.info("shutting down")
         opcua_client.disconnect()
         rknn.release()
-        print("Done.")
+        log.info("shutdown complete")
 
 
 if __name__ == "__main__":
