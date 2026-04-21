@@ -17,14 +17,14 @@ ITERATIONS = 1000
 log = logging.getLogger(__name__)
 
 
-def benchmark_model(model_path: str, core_mask: int, warmup: int, iterations: int) -> dict:
+def benchmark_model(model_path: str, warmup: int, iterations: int) -> dict:
     rknn = RKNNLite()
     try:
         ret = rknn.load_rknn(model_path)
         if ret != 0:
             raise RuntimeError(f"load_rknn failed with code {ret}")
 
-        ret = rknn.init_runtime(core_mask=core_mask)
+        ret = rknn.init_runtime()
         if ret != 0:
             raise RuntimeError(f"init_runtime failed with code {ret}")
 
@@ -79,7 +79,6 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("benchmark_results.json"))
     parser.add_argument("--warmup", type=int, default=WARMUP)
     parser.add_argument("--iterations", type=int, default=ITERATIONS)
-    parser.add_argument("--cpu-only", action="store_true")
     args = parser.parse_args()
 
     models = find_models(args.rknn_dir)
@@ -93,35 +92,20 @@ def main():
         key = f"{model_name}_{quant}"
         log.info("Benchmarking %s (%s): %s", model_name, quant, path)
 
-        if not args.cpu_only:
-            log.info("NPU core 0: warmup=%d iterations=%d", args.warmup, args.iterations)
-            npu_result = benchmark_model(path, RKNNLite.NPU_CORE_0, args.warmup, args.iterations)
-            if "error" not in npu_result:
-                log.info(
-                    "NPU core 0: mean=%.3f ms  p50=%.3f ms  p95=%.3f ms",
-                    npu_result["mean_ms"], npu_result["p50_ms"], npu_result["p95_ms"],
-                )
-            else:
-                log.warning("NPU core 0 benchmark failed: %s", npu_result["error"])
-        else:
-            npu_result = None
-
-        log.info("NPU auto: warmup=%d iterations=%d", args.warmup, args.iterations)
-        auto_result = benchmark_model(path, RKNNLite.NPU_CORE_AUTO, args.warmup, args.iterations)
-        if "error" not in auto_result:
+        result = benchmark_model(path, args.warmup, args.iterations)
+        if "error" not in result:
             log.info(
-                "NPU auto: mean=%.3f ms  p50=%.3f ms  p95=%.3f ms",
-                auto_result["mean_ms"], auto_result["p50_ms"], auto_result["p95_ms"],
+                "%s: mean=%.3f ms  p50=%.3f ms  p95=%.3f ms",
+                key, result["mean_ms"], result["p50_ms"], result["p95_ms"],
             )
         else:
-            log.warning("NPU auto benchmark failed: %s", auto_result["error"])
+            log.warning("%s: %s", key, result["error"])
 
         results[key] = {
             "model": model_name,
             "quantization": quant,
             "path": path,
-            "npu_core0": npu_result,
-            "npu_auto": auto_result,
+            "npu": result,
         }
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -131,7 +115,7 @@ def main():
 
     log.info("%-15s %-8s %12s %12s %12s %12s", "Model", "Quant", "Mean (ms)", "P50 (ms)", "P95 (ms)", "P99 (ms)")
     for r in results.values():
-        npu = r.get("npu_core0") or {}
+        npu = r.get("npu") or {}
         log.info(
             "%-15s %-8s %12s %12s %12s %12s",
             r["model"], r["quantization"],

@@ -16,14 +16,14 @@ INPUT_SHAPE = (1, 3, 224, 224)
 log = logging.getLogger(__name__)
 
 
-def benchmark_model(model_path: str, core_mask: int, warmup: int, iterations: int) -> dict:
+def benchmark_model(model_path: str, warmup: int, iterations: int) -> dict:
     rknn = RKNNLite()
     try:
         ret = rknn.load_rknn(model_path)
         if ret != 0:
             raise RuntimeError(f"load_rknn failed with code {ret}")
 
-        ret = rknn.init_runtime(core_mask=core_mask)
+        ret = rknn.init_runtime()
         if ret != 0:
             raise RuntimeError(f"init_runtime failed with code {ret}")
 
@@ -80,7 +80,7 @@ def main():
             key = f"{model_name}_{quant}"
 
             log.info("Benchmarking %s (%s): %s", model_name, quant, rknn_file)
-            npu = benchmark_model(str(rknn_file), RKNNLite.NPU_CORE_0, args.warmup, args.iterations)
+            npu = benchmark_model(str(rknn_file), args.warmup, args.iterations)
 
             if "error" not in npu:
                 log.info("%s: mean=%.3f ms  throughput=%.1f fps", key, npu["mean_ms"], npu["throughput_fps"])
