@@ -1,14 +1,14 @@
-#!/usr/bin/env python3
-"""End-to-end benchmark: OPC UA read → normalize → RKNN inference → prediction.
-Measures the complete pipeline latency for each model.
-"""
-import sys
-import time
+from __future__ import annotations
+
+import argparse
 import json
-import numpy as np
+import logging
+import time
 from pathlib import Path
-from rknnlite.api import RKNNLite
+
+import numpy as np
 from opcua import Client as OPCUAClient
+from rknnlite.api import RKNNLite
 
 WINDOW_SIZE = 32
 NUM_FEATURES = 52
@@ -35,77 +35,81 @@ MODELS = {
     "patchtst_fp16": {"rknn": "rknn/patchtst/model_fp16.rknn", "norm_dir": "onnx/patchtst"},
 }
 
+log = logging.getLogger(__name__)
 
-def read_all_tags(client, ns_idx):
+
+def read_all_tags(client: OPCUAClient, ns_idx: int) -> list[float]:
     row = []
     for tag in ALL_TAGS:
         node = client.get_node(f"ns={ns_idx};s={tag}")
-        val = node.get_value()
-        row.append(float(val))
+        row.append(float(node.get_value()))
     return row
 
 
-def benchmark_model(model_name, model_cfg, opcua_client, ns_idx, num_cycles=50):
-    """Run num_cycles of full pipeline and measure latency."""
+def benchmark_model(
+    model_name: str,
+    model_cfg: dict,
+    opcua_client: OPCUAClient,
+    ns_idx: int,
+    num_cycles: int = 50,
+) -> dict:
     rknn_path = Path.home() / model_cfg["rknn"]
     norm_dir = Path.home() / model_cfg["norm_dir"]
 
     if not rknn_path.exists():
-        return {"error": f"Model not found: {rknn_path}"}
+        return {"error": f"model not found: {rknn_path}"}
 
     mean = np.load(norm_dir / "norm_mean.npy")
     std = np.load(norm_dir / "norm_std.npy")
 
+    latencies: list[float] = []
+    predictions: list[int] = []
+    confidences: list[float] = []
+
     rknn = RKNNLite()
-    ret = rknn.load_rknn(str(rknn_path))
-    if ret != 0:
-        return {"error": f"Failed to load: {ret}"}
-    ret = rknn.init_runtime()
-    if ret != 0:
+    try:
+        ret = rknn.load_rknn(str(rknn_path))
+        if ret != 0:
+            raise RuntimeError(f"load_rknn failed with code {ret}")
+        ret = rknn.init_runtime()
+        if ret != 0:
+            raise RuntimeError(f"init_runtime failed with code {ret}")
+
+        log.info("[%s] filling buffer (%d samples)", model_name, WINDOW_SIZE)
+        buffer: list[list[float]] = []
+        for i in range(WINDOW_SIZE):
+            buffer.append(read_all_tags(opcua_client, ns_idx))
+            if i < WINDOW_SIZE - 1:
+                time.sleep(0.1)
+
+        log.info("[%s] running %d inference cycles", model_name, num_cycles)
+        for _ in range(num_cycles):
+            t0 = time.perf_counter()
+
+            buffer.pop(0)
+            buffer.append(read_all_tags(opcua_client, ns_idx))
+
+            window = np.array(buffer, dtype=np.float32).T
+            normalized = (window - mean[:, np.newaxis]) / std[:, np.newaxis]
+            input_data = np.expand_dims(normalized, axis=0).astype(np.float32)
+
+            logits = rknn.inference(inputs=[input_data])[0][0]
+            exp_logits = np.exp(logits - np.max(logits))
+            probs = exp_logits / exp_logits.sum()
+            pred = int(np.argmax(probs))
+
+            latencies.append((time.perf_counter() - t0) * 1000)
+            predictions.append(pred)
+            confidences.append(float(probs[pred]))
+
+    except Exception:
+        log.exception("[%s] benchmark failed", model_name)
+        return {"error": "benchmark failed"}
+    finally:
         rknn.release()
-        return {"error": f"Failed to init: {ret}"}
-
-    print(f"  [{model_name}] Filling buffer ({WINDOW_SIZE} samples)...")
-    buffer = []
-    for i in range(WINDOW_SIZE):
-        row = read_all_tags(opcua_client, ns_idx)
-        buffer.append(row)
-        if i < WINDOW_SIZE - 1:
-            time.sleep(0.1)
-
-    print(f"  [{model_name}] Running {num_cycles} inference cycles...")
-    latencies = []
-    predictions = []
-    confidences = []
-
-    for cycle in range(num_cycles):
-        t0 = time.perf_counter()
-
-        row = read_all_tags(opcua_client, ns_idx)
-
-        buffer.pop(0)
-        buffer.append(row)
-
-        window = np.array(buffer, dtype=np.float32).T
-        normalized = (window - mean[:, np.newaxis]) / std[:, np.newaxis]
-        input_data = np.expand_dims(normalized, axis=0).astype(np.float32)
-
-        outputs = rknn.inference(inputs=[input_data])
-        logits = outputs[0][0]
-
-        exp_logits = np.exp(logits - np.max(logits))
-        probs = exp_logits / exp_logits.sum()
-        pred = int(np.argmax(probs))
-        conf = float(probs[pred])
-
-        elapsed_ms = (time.perf_counter() - t0) * 1000
-        latencies.append(elapsed_ms)
-        predictions.append(pred)
-        confidences.append(conf)
-
-    rknn.release()
 
     lat = np.array(latencies)
+    most_common = int(np.bincount(predictions).argmax())
     return {
         "mean_ms": round(float(lat.mean()), 2),
         "std_ms": round(float(lat.std()), 2),
@@ -116,52 +120,58 @@ def benchmark_model(model_name, model_cfg, opcua_client, ns_idx, num_cycles=50):
         "max_ms": round(float(lat.max()), 2),
         "cycles": num_cycles,
         "avg_confidence": round(float(np.mean(confidences)), 4),
-        "most_common_prediction": int(np.bincount(predictions).argmax()),
-        "most_common_label": FAULT_LABELS.get(int(np.bincount(predictions).argmax()), "Unknown"),
+        "most_common_prediction": most_common,
+        "most_common_label": FAULT_LABELS.get(most_common, "Unknown"),
     }
 
 
 def main():
-    server_url = sys.argv[1] if len(sys.argv) > 1 else "opc.tcp://localhost:4840"
-    num_cycles = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
-    print(f"Connecting to OPC UA server: {server_url}")
-    client = OPCUAClient(server_url)
+    parser = argparse.ArgumentParser(description="E2E pipeline benchmark via OPC UA")
+    parser.add_argument("server_url", nargs="?", default="opc.tcp://localhost:4840")
+    parser.add_argument("--cycles", type=int, default=50)
+    parser.add_argument("--output", type=Path, default=Path.home() / "e2e_benchmark_results.json")
+    args = parser.parse_args()
+
+    log.info("Connecting to OPC UA server: %s", args.server_url)
+    client = OPCUAClient(args.server_url)
     client.connect()
     ns_idx = client.get_namespace_index(NAMESPACE_URI)
-    print(f"Connected (ns={ns_idx})")
+    log.info("Connected (ns=%d)", ns_idx)
 
     results = {}
+    try:
+        for model_name, model_cfg in MODELS.items():
+            log.info("E2E benchmark: %s", model_name)
+            result = benchmark_model(model_name, model_cfg, client, ns_idx, args.cycles)
+            results[model_name] = result
 
-    for model_name, model_cfg in MODELS.items():
-        print(f"\n{'='*60}")
-        print(f"E2E Benchmark: {model_name}")
-        print(f"{'='*60}")
+            if "error" in result:
+                log.warning("%s: %s", model_name, result["error"])
+            else:
+                log.info(
+                    "%s: mean=%.2f ms  p50=%.2f ms  p95=%.2f ms  pred=%s  conf=%.2f%%",
+                    model_name, result["mean_ms"], result["p50_ms"], result["p95_ms"],
+                    result["most_common_label"], result["avg_confidence"] * 100,
+                )
+    finally:
+        client.disconnect()
 
-        result = benchmark_model(model_name, model_cfg, client, ns_idx, num_cycles)
-        results[model_name] = result
-
-        if "error" in result:
-            print(f"  ERROR: {result['error']}")
-        else:
-            print(f"  Mean: {result['mean_ms']}ms | P50: {result['p50_ms']}ms | P95: {result['p95_ms']}ms")
-            print(f"  Prediction: {result['most_common_label']} | Avg confidence: {result['avg_confidence']:.2%}")
-
-    client.disconnect()
-
-    out_path = Path.home() / "e2e_benchmark_results.json"
-    with open(out_path, "w") as f:
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with open(args.output, "w") as f:
         json.dump(results, f, indent=2)
-    print(f"\nResults saved to {out_path}")
+    log.info("Results saved to %s", args.output)
 
-    print("\n## End-to-End Pipeline Benchmark\n")
-    print("| Model | E2E Mean (ms) | E2E P50 (ms) | E2E P95 (ms) | Prediction | Confidence |")
-    print("|-------|--------------|-------------|-------------|------------|------------|")
+    log.info("%-25s %12s %12s %12s %-20s %10s",
+             "Model", "Mean (ms)", "P50 (ms)", "P95 (ms)", "Prediction", "Confidence")
     for name, r in results.items():
         if "error" in r:
-            print(f"| {name} | ERROR | | | | |")
+            log.warning("%-25s ERROR: %s", name, r["error"])
         else:
-            print(f"| {name} | {r['mean_ms']} | {r['p50_ms']} | {r['p95_ms']} | {r['most_common_label']} | {r['avg_confidence']:.2%} |")
+            log.info("%-25s %12.2f %12.2f %12.2f %-20s %9.2f%%",
+                     name, r["mean_ms"], r["p50_ms"], r["p95_ms"],
+                     r["most_common_label"], r["avg_confidence"] * 100)
 
 
 if __name__ == "__main__":

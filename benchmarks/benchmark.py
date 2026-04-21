@@ -1,50 +1,49 @@
-#!/usr/bin/env python3
-"""Benchmark all RKNN models on RK3568 NPU and CPU.
-
-Usage (on RK3568):
-    python3 benchmark.py --rknn-dir ./rknn --output benchmark_results.json
-
-Measures mean/p50/p95/p99 latency over 1000 iterations after 100 warmup runs.
-"""
 from __future__ import annotations
 
 import argparse
 import json
+import logging
 import time
-import numpy as np
 from pathlib import Path
-from rknnlite.api import RKNNLite
 
+import numpy as np
+from rknnlite.api import RKNNLite
 
 WINDOW_SIZE = 32
 NUM_FEATURES = 52
 WARMUP = 100
 ITERATIONS = 1000
 
+log = logging.getLogger(__name__)
+
 
 def benchmark_model(model_path: str, core_mask: int, warmup: int, iterations: int) -> dict:
     rknn = RKNNLite()
-    ret = rknn.load_rknn(model_path)
-    if ret != 0:
-        return {"error": f"Failed to load model: {ret}"}
+    try:
+        ret = rknn.load_rknn(model_path)
+        if ret != 0:
+            raise RuntimeError(f"load_rknn failed with code {ret}")
 
-    ret = rknn.init_runtime()
-    if ret != 0:
+        ret = rknn.init_runtime(core_mask=core_mask)
+        if ret != 0:
+            raise RuntimeError(f"init_runtime failed with code {ret}")
+
+        dummy_input = np.random.randn(1, NUM_FEATURES, WINDOW_SIZE).astype(np.float32)
+
+        for _ in range(warmup):
+            rknn.inference(inputs=[dummy_input])
+
+        latencies = []
+        for _ in range(iterations):
+            t0 = time.perf_counter()
+            rknn.inference(inputs=[dummy_input])
+            latencies.append((time.perf_counter() - t0) * 1000)
+
+    except Exception:
+        log.exception("Benchmark failed for %s", model_path)
+        return {"error": "benchmark failed"}
+    finally:
         rknn.release()
-        return {"error": f"Failed to init runtime: {ret}"}
-
-    dummy_input = np.random.randn(1, NUM_FEATURES, WINDOW_SIZE).astype(np.float32)
-
-    for _ in range(warmup):
-        rknn.inference(inputs=[dummy_input])
-
-    latencies = []
-    for _ in range(iterations):
-        t0 = time.perf_counter()
-        rknn.inference(inputs=[dummy_input])
-        latencies.append((time.perf_counter() - t0) * 1000)
-
-    rknn.release()
 
     lat = np.array(latencies)
     return {
@@ -61,7 +60,6 @@ def benchmark_model(model_path: str, core_mask: int, warmup: int, iterations: in
 
 
 def find_models(rknn_dir: Path) -> list[tuple[str, str, str]]:
-    """Returns list of (model_name, quant_type, path)."""
     results = []
     for model_dir in sorted(rknn_dir.iterdir()):
         if not model_dir.is_dir():
@@ -74,60 +72,72 @@ def find_models(rknn_dir: Path) -> list[tuple[str, str, str]]:
 
 
 def main():
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
     parser = argparse.ArgumentParser(description="Benchmark RKNN models on RK3568")
     parser.add_argument("--rknn-dir", type=Path, default=Path("rknn"))
     parser.add_argument("--output", type=Path, default=Path("benchmark_results.json"))
     parser.add_argument("--warmup", type=int, default=WARMUP)
     parser.add_argument("--iterations", type=int, default=ITERATIONS)
-    parser.add_argument("--cpu-only", action="store_true", help="Only benchmark on CPU (no NPU)")
+    parser.add_argument("--cpu-only", action="store_true")
     args = parser.parse_args()
 
     models = find_models(args.rknn_dir)
     if not models:
-        print(f"No RKNN models found in {args.rknn_dir}")
+        log.error("No RKNN models found in %s", args.rknn_dir)
         return
 
     results = {}
 
     for model_name, quant, path in models:
         key = f"{model_name}_{quant}"
-        print(f"\n{'='*60}")
-        print(f"Benchmarking: {model_name} ({quant}) — {path}")
-        print(f"{'='*60}")
+        log.info("Benchmarking %s (%s): %s", model_name, quant, path)
 
         if not args.cpu_only:
-            print(f"  [NPU] {args.warmup} warmup + {args.iterations} iterations...")
+            log.info("NPU core 0: warmup=%d iterations=%d", args.warmup, args.iterations)
             npu_result = benchmark_model(path, RKNNLite.NPU_CORE_0, args.warmup, args.iterations)
-            print(f"  [NPU] mean={npu_result.get('mean_ms', 'N/A')}ms "
-                  f"p50={npu_result.get('p50_ms', 'N/A')}ms "
-                  f"p95={npu_result.get('p95_ms', 'N/A')}ms")
+            if "error" not in npu_result:
+                log.info(
+                    "NPU core 0: mean=%.3f ms  p50=%.3f ms  p95=%.3f ms",
+                    npu_result["mean_ms"], npu_result["p50_ms"], npu_result["p95_ms"],
+                )
+            else:
+                log.warning("NPU core 0 benchmark failed: %s", npu_result["error"])
         else:
             npu_result = None
 
-        print(f"  [CPU] {args.warmup} warmup + {args.iterations} iterations...")
-        cpu_result = benchmark_model(path, RKNNLite.NPU_CORE_AUTO, args.warmup, args.iterations)
+        log.info("NPU auto: warmup=%d iterations=%d", args.warmup, args.iterations)
+        auto_result = benchmark_model(path, RKNNLite.NPU_CORE_AUTO, args.warmup, args.iterations)
+        if "error" not in auto_result:
+            log.info(
+                "NPU auto: mean=%.3f ms  p50=%.3f ms  p95=%.3f ms",
+                auto_result["mean_ms"], auto_result["p50_ms"], auto_result["p95_ms"],
+            )
+        else:
+            log.warning("NPU auto benchmark failed: %s", auto_result["error"])
 
         results[key] = {
             "model": model_name,
             "quantization": quant,
             "path": path,
-            "npu": npu_result,
-            "cpu": cpu_result,
+            "npu_core0": npu_result,
+            "npu_auto": auto_result,
         }
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with open(args.output, "w") as f:
         json.dump(results, f, indent=2)
-    print(f"\nResults saved to {args.output}")
+    log.info("Results saved to %s", args.output)
 
-    print("\n## Benchmark Results\n")
-    print("| Model | Quantization | NPU Mean (ms) | NPU P50 (ms) | NPU P95 (ms) | NPU P99 (ms) |")
-    print("|-------|-------------|---------------|--------------|--------------|--------------|")
-    for key, r in results.items():
-        npu = r.get("npu") or {}
-        print(f"| {r['model']} | {r['quantization']} | "
-              f"{npu.get('mean_ms', 'N/A')} | {npu.get('p50_ms', 'N/A')} | "
-              f"{npu.get('p95_ms', 'N/A')} | {npu.get('p99_ms', 'N/A')} |")
+    log.info("%-15s %-8s %12s %12s %12s %12s", "Model", "Quant", "Mean (ms)", "P50 (ms)", "P95 (ms)", "P99 (ms)")
+    for r in results.values():
+        npu = r.get("npu_core0") or {}
+        log.info(
+            "%-15s %-8s %12s %12s %12s %12s",
+            r["model"], r["quantization"],
+            npu.get("mean_ms", "N/A"), npu.get("p50_ms", "N/A"),
+            npu.get("p95_ms", "N/A"), npu.get("p99_ms", "N/A"),
+        )
 
 
 if __name__ == "__main__":

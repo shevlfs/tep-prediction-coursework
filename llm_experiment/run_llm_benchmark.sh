@@ -1,5 +1,5 @@
 #!/bin/bash
-# Benchmark LLM inference on RK3568 ARM CPU
+# Benchmark LLM inference on RK3568 CPU
 # Run ON the RK3568 board after setup_llama_cpp.sh
 set -e
 
