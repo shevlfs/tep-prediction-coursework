@@ -256,13 +256,27 @@ def export(model: nn.Module, out_dir: Path):
     model.cpu().eval()
     dummy = torch.randn(1, NUM_FEATURES, WINDOW_SIZE)
     onnx_path = out_dir / "model.onnx"
-    torch.onnx.export(
-        model, dummy, str(onnx_path),
+    export_kwargs = dict(
         input_names=["input"],
         output_names=["output"],
         opset_version=13,
     )
-    log.info("ONNX model saved to %s", onnx_path)
+    # torch>=2.9 defaults to the dynamo exporter, which ignores opset_version and
+    # can emit ops rknn-toolkit2 cannot parse (e.g. an LSTM 'layout' attribute or
+    # opset-18 nodes). Force the legacy TorchScript exporter when the kwarg exists
+    # so the ONNX stays at opset 13 and RKNN-compatible; harmless on older torch.
+    import inspect
+    if "dynamo" in inspect.signature(torch.onnx.export).parameters:
+        export_kwargs["dynamo"] = False
+    try:
+        torch.onnx.export(model, dummy, str(onnx_path), **export_kwargs)
+    except torch.onnx.errors.UnsupportedOperatorError:
+        # Attention models need scaled_dot_product_attention (opset >= 14).
+        # LSTM must stay at 13 to avoid an unparseable 'layout' attribute, so we
+        # only bump the opset for models that actually require it.
+        export_kwargs["opset_version"] = 14
+        torch.onnx.export(model, dummy, str(onnx_path), **export_kwargs)
+    log.info("ONNX model saved to %s (opset %d)", onnx_path, export_kwargs["opset_version"])
 
     pt_path = out_dir / "model.pt"
     torch.save(model.state_dict(), pt_path)

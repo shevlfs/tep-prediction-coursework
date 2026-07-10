@@ -96,6 +96,8 @@ def build_calibration_dataset(
     window_size: int,
     window_stride: int,
     num_calib_samples: int,
+    norm_mean: Optional[np.ndarray] = None,
+    norm_std: Optional[np.ndarray] = None,
 ) -> int:
     calib_dir.mkdir(parents=True, exist_ok=True)
     calib_list_path.parent.mkdir(parents=True, exist_ok=True)
@@ -103,12 +105,23 @@ def build_calibration_dataset(
     for stale in calib_dir.glob("calib_*.npy"):
         stale.unlink()
 
+    # Per-channel standardization must match what the model actually receives at
+    # runtime (the inference client normalizes with the same saved mean/std).
+    # Without this, INT8 input scales are calibrated on the raw sensor range
+    # (channels span ~4 orders of magnitude) while inference feeds ~N(0,1) data,
+    # which collapses accuracy to near-random.
+    mean = None if norm_mean is None else norm_mean.reshape(1, -1, 1)
+    std = None if norm_std is None else norm_std.reshape(1, -1, 1)
+
     # Build per-run window iterators and alternate them.
     # This ensures all runs (and thus all fault classes) contribute to
     # calibration instead of only the first few.
     def windows(data: np.ndarray):
         for start in range(0, data.shape[0] - window_size + 1, window_stride):
-            yield np.expand_dims(data[start : start + window_size].T, axis=0).astype(np.float32)
+            sample = np.expand_dims(data[start : start + window_size].T, axis=0).astype(np.float32)
+            if mean is not None:
+                sample = ((sample - mean) / std).astype(np.float32)
+            yield sample
 
     iterators = [
         windows(data)
@@ -165,6 +178,39 @@ def run_conversion(
         rknn.release()
 
 
+def load_norm_params(
+    config: ConversionConfig, expected_channels: Optional[int]
+) -> Tuple[Optional[np.ndarray], Optional[np.ndarray]]:
+    if not config.normalize_calibration:
+        log.warning(
+            "Calibration normalization DISABLED: feeding raw sensor values to the "
+            "INT8 quantizer. This mismatches the normalized input the model sees at "
+            "runtime and is expected to wreck accuracy. Use for experiments only."
+        )
+        return None, None
+
+    norm_dir = config.norm_dir or config.paths.onnx_path.parent
+    mean_path = norm_dir / "norm_mean.npy"
+    std_path = norm_dir / "norm_std.npy"
+    if not mean_path.exists() or not std_path.exists():
+        raise FileNotFoundError(
+            f"Calibration normalization is enabled but norm params were not found in "
+            f"{norm_dir} (expected norm_mean.npy and norm_std.npy). Point --norm-dir at "
+            f"the training output dir, or pass --no-normalize-calibration."
+        )
+
+    mean = np.load(mean_path).astype(np.float32).reshape(-1)
+    std = np.load(std_path).astype(np.float32).reshape(-1)
+    if mean.shape != std.shape:
+        raise ValueError(f"norm_mean shape {mean.shape} != norm_std shape {std.shape}")
+    if expected_channels is not None and mean.shape[0] != expected_channels:
+        raise ValueError(
+            f"norm params have {mean.shape[0]} channels but ONNX expects {expected_channels}"
+        )
+    log.info("Normalizing calibration windows with norm params from %s", norm_dir)
+    return mean, std
+
+
 def prepare_calibration(config: ConversionConfig) -> Path:
     paths = config.paths
     if not paths.dataset_path.exists():
@@ -188,6 +234,8 @@ def prepare_calibration(config: ConversionConfig) -> Path:
     runs, rows_read = read_csv_grouped_by_run(paths.dataset_path, feature_columns, config.max_rows)
     log.info("Read %d rows from %d runs", rows_read, len(runs))
 
+    norm_mean, norm_std = load_norm_params(config, expected_channels)
+
     produced = build_calibration_dataset(
         runs=runs,
         calib_dir=paths.calib_dir,
@@ -195,6 +243,8 @@ def prepare_calibration(config: ConversionConfig) -> Path:
         window_size=window_size,
         window_stride=config.window_stride,
         num_calib_samples=config.num_calib_samples,
+        norm_mean=norm_mean,
+        norm_std=norm_std,
     )
     if produced == 0:
         raise RuntimeError("Failed to generate calibration samples. Check window size and dataset length.")
@@ -219,7 +269,10 @@ def main() -> int:
 
     paths = config.paths
     log.info("ONNX: %s -> RKNN: %s", paths.onnx_path, paths.rknn_path)
-    log.info("platform=%s, quantize=%s", config.target_platform, config.quantize)
+    log.info(
+        "platform=%s, quantize=%s, normalize_calibration=%s",
+        config.target_platform, config.quantize, config.normalize_calibration,
+    )
 
     if not paths.onnx_path.exists():
         raise FileNotFoundError(f"ONNX model not found: {paths.onnx_path}")

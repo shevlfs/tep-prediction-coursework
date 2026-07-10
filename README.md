@@ -73,14 +73,21 @@ MODEL=transformer QUANTIZATION=fp16 docker compose up -d
 # PatchTST -- best accuracy at 83%
 MODEL=patchtst QUANTIZATION=fp16 docker compose up -d
 
-# TCN with INT8 (faster but worse accuracy for TEP data)
+# TCN with INT8 (faster, ~same accuracy as FP16 once calibration is normalized)
 MODEL=tcn QUANTIZATION=int8 docker compose up -d
 ```
 
 Models: `tepnet`, `tcn`, `lstm`, `transformer`, `patchtst`
 Quantizations: `fp16`, `int8`
 
-INT8 is much worse for TEP models (accuracy drops to near random). Use FP16.
+INT8 used to collapse to near-random accuracy. That was a **calibration bug**, not a
+property of the dataset: calibration fed raw sensor values to the quantizer while the model
+is trained/served on per-channel standardized inputs, so the INT8 input scales were
+mismatched. The conversion pipeline now standardizes calibration windows with the same
+`norm_mean`/`norm_std` (default on; `--no-normalize-calibration` reproduces the old bug).
+After re-converting, INT8 lands within ~1% of FP16 across all five models. See
+`benchmarks/quantization_experiment.py` and `results/quantization_experiment.md`. Re-run
+`conversion/convert_all_models.sh` to regenerate the deployed INT8 models with the fix.
 
 Without Docker:
 

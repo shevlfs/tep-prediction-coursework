@@ -74,6 +74,8 @@ class ConversionConfig:
     window_size: Optional[int]
     window_stride: int
     max_rows: Optional[int]
+    normalize_calibration: bool
+    norm_dir: Optional[Path]
     verbose_rknn: bool
     log_level: str
 
@@ -110,6 +112,8 @@ class ConversionConfig:
         default_window_stride = _env_int("WINDOW_STRIDE", 8)
         default_max_rows = cls._parse_optional_int(_env("MAX_ROWS"))
         default_quantize = _env_bool("DO_QUANTIZATION", True)
+        default_normalize_calibration = _env_bool("NORMALIZE_CALIBRATION", True)
+        default_norm_dir = _env("CALIB_NORM_DIR")
         default_log_level = _env("LOG_LEVEL", "INFO")
 
         parser = argparse.ArgumentParser(
@@ -164,6 +168,29 @@ class ConversionConfig:
             help="Optional cap on number of CSV rows to read",
         )
 
+        norm_group = parser.add_mutually_exclusive_group()
+        norm_group.add_argument(
+            "--normalize-calibration",
+            dest="normalize_calibration",
+            action="store_true",
+            help="Standardize calibration windows with saved norm_mean/norm_std, "
+            "matching the runtime input the model actually sees (default)",
+        )
+        norm_group.add_argument(
+            "--no-normalize-calibration",
+            dest="normalize_calibration",
+            action="store_false",
+            help="Feed raw (un-normalized) sensor values to the INT8 quantizer. "
+            "Reproduces the calibration/runtime mismatch; for experiments only",
+        )
+        parser.set_defaults(normalize_calibration=default_normalize_calibration)
+        parser.add_argument(
+            "--norm-dir",
+            default=default_norm_dir,
+            help="Directory with norm_mean.npy/norm_std.npy for calibration "
+            "normalization (default: alongside the ONNX model)",
+        )
+
         parser.add_argument("--verbose-rknn", action="store_true", help="Enable verbose RKNN logs")
         parser.add_argument("--log-level", default=default_log_level, help="Python log level")
 
@@ -209,6 +236,8 @@ class ConversionConfig:
             window_size=args.window_size,
             window_stride=int(args.window_stride),
             max_rows=args.max_rows,
+            normalize_calibration=bool(args.normalize_calibration),
+            norm_dir=_resolve_path(args.norm_dir) if args.norm_dir else None,
             verbose_rknn=bool(args.verbose_rknn),
             log_level=args.log_level,
         )
